@@ -54,7 +54,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -60, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Rin Scripts v1"
+title.Text = "Rin Scripts v1.1 (SUMMER UPDATE)"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 20
 title.Font = Enum.Font.GothamBold
@@ -206,8 +206,8 @@ end
 -- PET TAB
 local petTab = createTab("Pet")
 local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
-local weightInput = createInput("Weight") weightInput.Parent = petTab
-local ageInput = createInput("Age") ageInput.Parent = petTab
+local weightInput = createInput("Age") weightInput.Parent = petTab
+local ageInput = createInput("Weight") ageInput.Parent = petTab
 createButton("Spawn", function()
     local name = petNameInput.Text
     local weight = tonumber(weightInput.Text)
