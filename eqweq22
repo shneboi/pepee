@@ -1,0 +1,272 @@
+-- Services
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local TS = game:GetService("TweenService")
+
+-- Load Spawner library
+local success, Spawner = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/DeltaGay/femboy/refs/heads/main/GardenSpawner.lua"))()
+end)
+
+if not success or not Spawner then
+    warn("Failed to load Spawner module.")
+    return
+end
+
+-- UI Setup
+local gui = Instance.new("ScreenGui")
+gui.ResetOnSpawn = false
+gui.Name = "ModernSpawnerUI"
+gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Main Frame
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 415, 0, 290)
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.BackgroundColor3 = Color3.fromRGB(55, 55, 75) 
+main.BorderSizePixel = 0
+main.Active = true
+main.Selectable = true
+main.Draggable = true
+main.Parent = gui
+
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(55, 55, 75)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 100))
+})
+gradient.Rotation = 90
+gradient.Parent = main
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 10)
+corner.Parent = main
+
+local stroke = Instance.new("UIStroke")
+stroke.Color = Color3.fromRGB(255, 255, 255)
+stroke.Thickness = 1.5
+stroke.Transparency = 0.5
+stroke.Parent = main
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -60, 0, 40)
+title.Position = UDim2.new(0, 10, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "Rin Scripts v1"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 20
+title.Font = Enum.Font.GothamBold
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+title.TextStrokeTransparency = 0.7
+title.Parent = main
+
+-- Exit Button
+local exitBtn = Instance.new("TextButton")
+exitBtn.Size = UDim2.new(0, 24, 0, 24)
+exitBtn.Position = UDim2.new(1, -30, 0, 8)
+exitBtn.Text = "X"
+exitBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 130)
+exitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+exitBtn.Font = Enum.Font.GothamBold
+exitBtn.TextSize = 14
+exitBtn.Parent = main
+Instance.new("UICorner", exitBtn).CornerRadius = UDim.new(0, 10)
+
+exitBtn.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+-- Minimize Button
+local minimizeBtn = Instance.new("TextButton")
+minimizeBtn.Size = UDim2.new(0, 24, 0, 24)
+minimizeBtn.Position = UDim2.new(1, -60, 0, 8)
+minimizeBtn.Text = "_"
+minimizeBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 130)
+minimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+minimizeBtn.Font = Enum.Font.GothamBold
+minimizeBtn.TextSize = 18
+minimizeBtn.Parent = main
+Instance.new("UICorner", minimizeBtn).CornerRadius = UDim.new(0, 10)
+
+-- Tab Bar
+local tabBar = Instance.new("Frame")
+tabBar.Size = UDim2.new(1, -20, 0, 30)
+tabBar.Position = UDim2.new(0, 10, 0, 45)
+tabBar.BackgroundTransparency = 1
+tabBar.Name = "TabBar"
+tabBar.Parent = main
+
+local tabLayout = Instance.new("UIListLayout")
+tabLayout.FillDirection = Enum.FillDirection.Horizontal
+tabLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+tabLayout.SortOrder = Enum.SortOrder.LayoutOrder
+tabLayout.Padding = UDim.new(0, 8)
+tabLayout.Parent = tabBar
+
+local content = Instance.new("Frame")
+content.Size = UDim2.new(1, -40, 1, -90)
+content.Position = UDim2.new(0, 20, 0, 80)
+content.BackgroundTransparency = 1
+content.Name = "Content"
+content.Parent = main
+
+-- INPUT FIELD CREATOR (vibrant color)
+local function createInput(placeholder)
+    local box = Instance.new("TextBox")
+    box.Size = UDim2.new(0, 220, 0, 36)
+    box.PlaceholderText = placeholder
+    box.Text = ""
+    box.BackgroundColor3 = Color3.fromRGB(80, 80, 100)
+    box.TextColor3 = Color3.fromRGB(255, 255, 255)
+    box.Font = Enum.Font.Gotham
+    box.TextSize = 16
+    box.ClearTextOnFocus = false
+    Instance.new("UICorner", box).CornerRadius = UDim.new(0, 10)
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(150, 150, 255)
+    stroke.Thickness = 1.5
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Parent = box
+
+    return box
+end
+
+-- BUTTON CREATOR
+local function createButton(text, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 220, 0, 36)
+    btn.Text = text
+    btn.BackgroundColor3 = Color3.fromRGB(100, 100, 130)
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.Font = Enum.Font.GothamSemibold
+    btn.TextSize = 16
+    btn.AutoButtonColor = false
+    btn.Active = true
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 10)
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(200, 200, 200)
+    stroke.Thickness = 1
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Parent = btn
+
+    btn.MouseButton1Click:Connect(callback)
+    return btn
+end
+
+-- TAB CREATOR
+local tabFrames = {}
+
+local function createTab(name)
+    local emojiMap = {
+        Pet = "🐾",
+        Seed = "🌱",
+        Egg = "🥚",
+        Spin = "🎰"
+    }
+
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 90, 1, 0)
+    button.Text = (emojiMap[name] or "") .. "  " .. name
+    button.BackgroundColor3 = Color3.fromRGB(100, 100, 130)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.GothamSemibold
+    button.TextSize = 14
+    button.AutoButtonColor = true
+    button.Parent = tabBar
+    Instance.new("UICorner", button).CornerRadius = UDim.new(0, 10)
+
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.BackgroundTransparency = 1
+    frame.Visible = false
+    frame.Parent = content
+
+    local layout = Instance.new("UIListLayout")
+    layout.Padding = UDim.new(0, 10)
+    layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    layout.Parent = frame
+
+    button.MouseButton1Click:Connect(function()
+        for _, f in pairs(tabFrames) do
+            f.Visible = false
+        end
+        frame.Visible = true
+    end)
+
+    tabFrames[name] = frame
+    return frame
+end
+
+-- PET TAB
+local petTab = createTab("Pet")
+local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
+local weightInput = createInput("Weight") weightInput.Parent = petTab
+local ageInput = createInput("Age") ageInput.Parent = petTab
+createButton("Spawn", function()
+    local name = petNameInput.Text
+    local weight = tonumber(weightInput.Text)
+    local age = tonumber(ageInput.Text)
+
+    if name ~= "" and weight and age then
+        Spawner.SpawnPet(name, age, weight)
+    else
+        warn("Please fill all fields with valid data.")
+    end
+end).Parent = petTab
+
+-- SEED TAB
+local seedTab = createTab("Seed")
+local seedInput = createInput("Seed Name") seedInput.Parent = seedTab
+createButton("Spawn", function()
+    if seedInput.Text ~= "" then
+        Spawner.SpawnSeed(seedInput.Text)
+    end
+end).Parent = seedTab
+
+-- EGG TAB
+local eggTab = createTab("Egg")
+local eggInput = createInput("Egg Name") eggInput.Parent = eggTab
+createButton("Spawn", function()
+    if eggInput.Text ~= "" then
+        Spawner.SpawnEgg(eggInput.Text)
+    end
+end).Parent = eggTab
+
+-- SPIN TAB
+local spinTab = createTab("Spin")
+local spinInput = createInput("Seed Name to Spin") spinInput.Parent = spinTab
+createButton("Spin", function()
+    if spinInput.Text ~= "" then
+        Spawner.Spin(spinInput.Text)
+    end
+end).Parent = spinTab
+
+-- Minimize Logic
+local minimized = false
+local originalSize = main.Size
+minimizeBtn.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    if minimized then
+        main.Size = UDim2.new(0, 320, 0, 50)
+        tabBar.Visible = false
+        content.Visible = false
+    else
+        main.Size = originalSize
+        tabBar.Visible = true
+        content.Visible = true
+        for _, f in pairs(tabFrames) do
+            f.Visible = false
+        end
+        tabFrames["Pet"].Visible = true
+    end
+end)
+
+-- Default tab
+petTab.Visible = true
+getgenv().Executed = nil
