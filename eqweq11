@@ -250,22 +250,27 @@ end).Parent = spinTab
 -- Minimize Logic
 local minimized = false
 local originalSize = main.Size
+local originalTitle = title.Text -- Itatabi ang original title
+
 minimizeBtn.MouseButton1Click:Connect(function()
     minimized = not minimized
     if minimized then
         main.Size = UDim2.new(0, 320, 0, 50)
         tabBar.Visible = false
         content.Visible = false
+        title.Text = "Rin Scripts" -- Palitan ang title kapag minimized
     else
         main.Size = originalSize
         tabBar.Visible = true
         content.Visible = true
+        title.Text = originalTitle -- Ibalik sa original title
         for _, f in pairs(tabFrames) do
             f.Visible = false
         end
         tabFrames["Pet"].Visible = true
     end
 end)
+
 
 -- Default tab
 petTab.Visible = true
