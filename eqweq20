@@ -23,7 +23,7 @@ local main = Instance.new("Frame")
 main.Size = UDim2.new(0, 415, 0, 290)
 main.Position = UDim2.new(0.5, 0, 0.5, 0)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
-main.BackgroundColor3 = Color3.fromRGB(25, 40, 55) 
+main.BackgroundColor3 = Color3.fromRGB(18, 52, 78) -- Deep Sea Blue
 main.BorderSizePixel = 0
 main.Active = true
 main.Selectable = true
@@ -32,8 +32,8 @@ main.Parent = gui
 
 local gradient = Instance.new("UIGradient")
 gradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 40, 55)), 
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 60, 80))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(18, 52, 78)), -- Dark Ocean
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 105, 125)) -- Lighter Sea Blue
 })
 gradient.Rotation = 90
 gradient.Parent = main
@@ -43,7 +43,7 @@ corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = main
 
 local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(120, 160, 200) 
+stroke.Color = Color3.fromRGB(120, 160, 200)
 stroke.Thickness = 1.5
 stroke.Transparency = 0.5
 stroke.Parent = main
@@ -53,7 +53,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -60, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Rin Scripts v2 🥇"
+title.Text = "Rin Scripts v1.2 (SUMMER UPDATE) ☀️"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 20
 title.Font = Enum.Font.GothamBold
@@ -118,7 +118,7 @@ local function createInput(placeholder)
     box.Size = UDim2.new(0, 220, 0, 36)
     box.PlaceholderText = placeholder
     box.Text = ""
-    box.BackgroundColor3 = Color3.fromRGB(40, 60, 80)
+    box.BackgroundColor3 = Color3.fromRGB(30, 60, 90) -- Ocean Input
     box.TextColor3 = Color3.fromRGB(255, 255, 255)
     box.Font = Enum.Font.Gotham
     box.TextSize = 16
@@ -139,7 +139,7 @@ local function createButton(text, callback)
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(0, 220, 0, 36)
     btn.Text = text
-    btn.BackgroundColor3 = Color3.fromRGB(60, 100, 130)
+    btn.BackgroundColor3 = Color3.fromRGB(60, 100, 130) 
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
     btn.Font = Enum.Font.GothamSemibold
     btn.TextSize = 16
@@ -171,7 +171,7 @@ local function createTab(name)
     local button = Instance.new("TextButton")
     button.Size = UDim2.new(0, 90, 1, 0)
     button.Text = (emojiMap[name] or "") .. "  " .. name
-    button.BackgroundColor3 = Color3.fromRGB(60, 100, 130)
+    button.BackgroundColor3 = Color3.fromRGB(60, 100, 130) 
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.Font = Enum.Font.GothamSemibold
     button.TextSize = 14
