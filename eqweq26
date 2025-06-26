@@ -5,7 +5,7 @@ local TS = game:GetService("TweenService")
 
 -- Load New Spawner
 local success, Spawner = pcall(function()
-    return loadstring(game:HttpGet("https://codeberg.org/DarkBackup/script/raw/branch/main/loadstring"))()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/GrowAFilippino/GrowAGarden/refs/heads/main/Spawner.lua"))()
 end)
 
 if not success or not Spawner then
