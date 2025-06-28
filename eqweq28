@@ -119,15 +119,15 @@ local function createInput(placeholder)
     box.Size = UDim2.new(0, 220, 0, 36)
     box.PlaceholderText = placeholder
     box.Text = ""
-    box.BackgroundColor3 = Color3.fromRGB(85, 180, 240) -- Sky Input
-    box.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+    box.BackgroundColor3 = Color3.fromRGB(60, 130, 190) -- Slightly darker for contrast
+    box.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for visibility
     box.Font = Enum.Font.Gotham
     box.TextSize = 16
     box.ClearTextOnFocus = false
     Instance.new("UICorner", box).CornerRadius = UDim.new(0, 10)
 
     local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(30, 90, 160) -- Deep Blue Border
+    stroke.Color = Color3.fromRGB(30, 90, 160)
     stroke.Thickness = 1.5
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = box
