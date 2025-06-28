@@ -54,7 +54,7 @@ local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -60, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Rin Scripts v2 🥇"
+title.Text = "Rin Scripts v2.1 🥇"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 20
 title.Font = Enum.Font.GothamBold
@@ -120,7 +120,7 @@ local function createInput(placeholder)
     box.PlaceholderText = placeholder
     box.Text = ""
     box.BackgroundColor3 = Color3.fromRGB(85, 180, 240) -- Sky Input
-    box.TextColor3 = Color3.fromRGB(255, 255, 255)
+    box.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
     box.Font = Enum.Font.Gotham
     box.TextSize = 16
     box.ClearTextOnFocus = false
