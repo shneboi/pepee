@@ -19,22 +19,34 @@ gui.ResetOnSpawn = false
 gui.Name = "ModernSpawnerUI"
 gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 
+-- 🌄 Background Image
+local bgImage = Instance.new("ImageLabel")
+bgImage.Size = UDim2.new(1, 0, 1, 0)
+bgImage.Position = UDim2.new(0, 0, 0, 0)
+bgImage.BackgroundTransparency = 1
+bgImage.Image = "rbxassetid://17237690588"
+bgImage.ScaleType = Enum.ScaleType.Crop
+bgImage.ZIndex = 0
+bgImage.Parent = gui
+
+-- Main Frame
 local main = Instance.new("Frame")
 main.Size = UDim2.new(0, 415, 0, 290)
 main.Position = UDim2.new(0.5, 0, 0.5, 0)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
-main.BackgroundColor3 = Color3.fromRGB(114, 200, 255) -- Sky blue
+main.BackgroundColor3 = Color3.fromRGB(114, 200, 255)
 main.BorderSizePixel = 0
 main.Active = true
 main.Selectable = true
 main.Draggable = true
+main.ZIndex = 1
 main.Parent = gui
 
 local gradient = Instance.new("UIGradient")
 gradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(114, 200, 255)), -- Sky
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(70, 160, 225)), -- Mid Ocean
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 90, 160))     -- Deep Sea
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(114, 200, 255)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(70, 160, 225)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 90, 160))
 })
 gradient.Rotation = 90
 gradient.Parent = main
@@ -44,7 +56,7 @@ corner.CornerRadius = UDim.new(0, 10)
 corner.Parent = main
 
 local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(240, 202, 82) -- Golden border like egg base
+stroke.Color = Color3.fromRGB(240, 202, 82)
 stroke.Thickness = 2
 stroke.Transparency = 0.2
 stroke.Parent = main
@@ -61,6 +73,7 @@ title.Font = Enum.Font.GothamBold
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 title.TextStrokeTransparency = 0.7
+title.ZIndex = 2
 title.Parent = main
 
 -- Exit Button
@@ -68,10 +81,11 @@ local exitBtn = Instance.new("TextButton")
 exitBtn.Size = UDim2.new(0, 24, 0, 24)
 exitBtn.Position = UDim2.new(1, -30, 0, 8)
 exitBtn.Text = "X"
-exitBtn.BackgroundColor3 = Color3.fromRGB(30, 90, 160) -- Deep sea button
+exitBtn.BackgroundColor3 = Color3.fromRGB(30, 90, 160)
 exitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 exitBtn.Font = Enum.Font.GothamBold
 exitBtn.TextSize = 14
+exitBtn.ZIndex = 2
 exitBtn.Parent = main
 Instance.new("UICorner", exitBtn).CornerRadius = UDim.new(0, 10)
 
@@ -88,6 +102,7 @@ minimizeBtn.BackgroundColor3 = Color3.fromRGB(30, 90, 160)
 minimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 minimizeBtn.Font = Enum.Font.GothamBold
 minimizeBtn.TextSize = 18
+minimizeBtn.ZIndex = 2
 minimizeBtn.Parent = main
 Instance.new("UICorner", minimizeBtn).CornerRadius = UDim.new(0, 10)
 
@@ -97,6 +112,7 @@ tabBar.Size = UDim2.new(1, -20, 0, 30)
 tabBar.Position = UDim2.new(0, 10, 0, 45)
 tabBar.BackgroundTransparency = 1
 tabBar.Name = "TabBar"
+tabBar.ZIndex = 2
 tabBar.Parent = main
 
 local tabLayout = Instance.new("UIListLayout")
@@ -111,19 +127,21 @@ content.Size = UDim2.new(1, -40, 1, -90)
 content.Position = UDim2.new(0, 20, 0, 80)
 content.BackgroundTransparency = 1
 content.Name = "Content"
+content.ZIndex = 2
 content.Parent = main
 
--- Create Input
+-- Input Creator
 local function createInput(placeholder)
     local box = Instance.new("TextBox")
     box.Size = UDim2.new(0, 220, 0, 36)
     box.PlaceholderText = placeholder
     box.Text = ""
-    box.BackgroundColor3 = Color3.fromRGB(60, 130, 190) -- Slightly darker for contrast
-    box.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text for visibility
+    box.BackgroundColor3 = Color3.fromRGB(60, 130, 190)
+    box.TextColor3 = Color3.fromRGB(255, 255, 255)
     box.Font = Enum.Font.Gotham
     box.TextSize = 16
     box.ClearTextOnFocus = false
+    box.ZIndex = 2
     Instance.new("UICorner", box).CornerRadius = UDim.new(0, 10)
 
     local stroke = Instance.new("UIStroke")
@@ -135,21 +153,22 @@ local function createInput(placeholder)
     return box
 end
 
--- Create Button
+-- Button Creator
 local function createButton(text, callback)
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(0, 220, 0, 36)
     btn.Text = text
-    btn.BackgroundColor3 = Color3.fromRGB(70, 160, 225) -- Button Blue
+    btn.BackgroundColor3 = Color3.fromRGB(70, 160, 225)
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
     btn.Font = Enum.Font.GothamSemibold
     btn.TextSize = 16
     btn.AutoButtonColor = false
     btn.Active = true
+    btn.ZIndex = 2
     Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 10)
 
     local stroke = Instance.new("UIStroke")
-    stroke.Color = Color3.fromRGB(240, 202, 82) -- Golden border
+    stroke.Color = Color3.fromRGB(240, 202, 82)
     stroke.Thickness = 1
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = btn
@@ -158,8 +177,9 @@ local function createButton(text, callback)
     return btn
 end
 
--- Create Tab
+-- Tab Creator
 local tabFrames = {}
+local activeTabBtn
 
 local function createTab(name)
     local emojiMap = {
@@ -177,6 +197,7 @@ local function createTab(name)
     button.Font = Enum.Font.GothamSemibold
     button.TextSize = 14
     button.AutoButtonColor = true
+    button.ZIndex = 2
     button.Parent = tabBar
     Instance.new("UICorner", button).CornerRadius = UDim.new(0, 10)
 
@@ -184,6 +205,7 @@ local function createTab(name)
     frame.Size = UDim2.new(1, 0, 1, 0)
     frame.BackgroundTransparency = 1
     frame.Visible = false
+    frame.ZIndex = 2
     frame.Parent = content
 
     local layout = Instance.new("UIListLayout")
@@ -197,13 +219,19 @@ local function createTab(name)
             f.Visible = false
         end
         frame.Visible = true
+
+        if activeTabBtn then
+            activeTabBtn.BackgroundColor3 = Color3.fromRGB(70, 160, 225)
+        end
+        button.BackgroundColor3 = Color3.fromRGB(100, 190, 255)
+        activeTabBtn = button
     end)
 
     tabFrames[name] = frame
     return frame
 end
 
--- PET Tab
+-- Tab Content
 local petTab = createTab("Pet")
 local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
 local weightInput = createInput("Weight (KG)") weightInput.Parent = petTab
@@ -220,7 +248,6 @@ createButton("Spawn", function()
     end
 end).Parent = petTab
 
--- SEED Tab
 local seedTab = createTab("Seed")
 local seedInput = createInput("Seed Name") seedInput.Parent = seedTab
 createButton("Spawn", function()
@@ -229,7 +256,6 @@ createButton("Spawn", function()
     end
 end).Parent = seedTab
 
--- EGG Tab
 local eggTab = createTab("Egg")
 local eggInput = createInput("Egg Name") eggInput.Parent = eggTab
 createButton("Spawn", function()
@@ -238,7 +264,6 @@ createButton("Spawn", function()
     end
 end).Parent = eggTab
 
--- SPIN Tab
 local spinTab = createTab("Spin")
 local spinInput = createInput("Spin Name") spinInput.Parent = spinTab
 createButton("Spin", function()
