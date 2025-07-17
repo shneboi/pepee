@@ -232,7 +232,7 @@ local function createTab(name)
     return frame
 end
 
--- Pet Tab with Grid Alignment (based on sketch)
+-- Pet Tab with Mutation Logic
 local petTab = createTab("Pet")
 
 local container = Instance.new("Frame")
@@ -274,13 +274,19 @@ row2Layout.Parent = row2
 local ageInput = createInput("Age") ageInput.Parent = row2
 local weightInput = createInput("Weight (KG)") weightInput.Parent = row2
 
+-- UPDATED Spawn button with mutation logic
 local spawnBtn = createButton("Spawn", function()
-    local name = petNameInput.Text
+    local rawName = petNameInput.Text
     local mutation = mutationInput.Text
     local age = tonumber(ageInput.Text)
     local weight = tonumber(weightInput.Text)
 
-    if name ~= "" and mutation ~= "" and age and weight then
+    local name = rawName
+    if mutation ~= "" then
+        name = mutation .. " " .. rawName
+    end
+
+    if rawName ~= "" and age and weight then
         Spawner.SpawnPet(name, weight, age, mutation)
     else
         warn("Please fill all fields with valid data.")
