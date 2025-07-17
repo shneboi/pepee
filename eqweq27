@@ -133,7 +133,7 @@ content.Parent = main
 -- Input Creator
 local function createInput(placeholder)
     local box = Instance.new("TextBox")
-    box.Size = UDim2.new(0, 220, 0, 36)
+    box.Size = UDim2.new(0, 180, 0, 36)
     box.PlaceholderText = placeholder
     box.Text = ""
     box.BackgroundColor3 = Color3.fromRGB(60, 80, 50)
@@ -156,7 +156,7 @@ end
 -- Button Creator
 local function createButton(text, callback)
     local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(0, 220, 0, 36)
+    btn.Size = UDim2.new(0, 370, 0, 36)
     btn.Text = text
     btn.BackgroundColor3 = Color3.fromRGB(85, 107, 47)
     btn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -232,20 +232,47 @@ local function createTab(name)
     return frame
 end
 
--- Pet Tab (Updated Layout)
+-- Pet Tab with Grid Alignment (based on sketch)
 local petTab = createTab("Pet")
 
-local grid = Instance.new("UIGridLayout")
-grid.CellSize = UDim2.new(0, 180, 0, 36)
-grid.CellPadding = UDim2.new(0, 10, 0, 10)
-grid.FillDirection = Enum.FillDirection.Horizontal
-grid.SortOrder = Enum.SortOrder.LayoutOrder
-grid.Parent = petTab
+local container = Instance.new("Frame")
+container.Size = UDim2.new(1, 0, 1, 0)
+container.BackgroundTransparency = 1
+container.Parent = petTab
 
-local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
-local mutationInput = createInput("Mutation") mutationInput.Parent = petTab
-local ageInput = createInput("Age") ageInput.Parent = petTab
-local weightInput = createInput("Weight (KG)") weightInput.Parent = petTab
+local uiList = Instance.new("UIListLayout")
+uiList.Padding = UDim.new(0, 10)
+uiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uiList.SortOrder = Enum.SortOrder.LayoutOrder
+uiList.Parent = container
+
+local row1 = Instance.new("Frame")
+row1.Size = UDim2.new(1, 0, 0, 36)
+row1.BackgroundTransparency = 1
+row1.LayoutOrder = 1
+row1.Parent = container
+
+local row1Layout = Instance.new("UIListLayout")
+row1Layout.FillDirection = Enum.FillDirection.Horizontal
+row1Layout.Padding = UDim.new(0, 10)
+row1Layout.Parent = row1
+
+local petNameInput = createInput("Pet Name") petNameInput.Parent = row1
+local mutationInput = createInput("Mutation") mutationInput.Parent = row1
+
+local row2 = Instance.new("Frame")
+row2.Size = UDim2.new(1, 0, 0, 36)
+row2.BackgroundTransparency = 1
+row2.LayoutOrder = 2
+row2.Parent = container
+
+local row2Layout = Instance.new("UIListLayout")
+row2Layout.FillDirection = Enum.FillDirection.Horizontal
+row2Layout.Padding = UDim.new(0, 10)
+row2Layout.Parent = row2
+
+local ageInput = createInput("Age") ageInput.Parent = row2
+local weightInput = createInput("Weight (KG)") weightInput.Parent = row2
 
 local spawnBtn = createButton("Spawn", function()
     local name = petNameInput.Text
@@ -259,11 +286,10 @@ local spawnBtn = createButton("Spawn", function()
         warn("Please fill all fields with valid data.")
     end
 end)
-spawnBtn.Size = UDim2.new(0, 370, 0, 36)
-spawnBtn.LayoutOrder = 99
-spawnBtn.Parent = petTab
+spawnBtn.LayoutOrder = 3
+spawnBtn.Parent = container
 
--- Other Tabs (Unchanged)
+-- Other Tabs
 local seedTab = createTab("Seed")
 local seedInput = createInput("Seed Name") seedInput.Parent = seedTab
 createButton("Spawn", function()
