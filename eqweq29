@@ -19,7 +19,7 @@ gui.ResetOnSpawn = false
 gui.Name = "ModernSpawnerUI"
 gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Background Image (unchanged)
+-- Background Image
 local bgImage = Instance.new("ImageLabel")
 bgImage.Size = UDim2.new(1, 0, 1, 0)
 bgImage.Position = UDim2.new(0, 0, 0, 0)
@@ -208,6 +208,8 @@ local function createTab(name)
     frame.ZIndex = 2
     frame.Parent = content
 
+    tabFrames[name] = frame
+
     local layout = Instance.new("UIListLayout")
     layout.Padding = UDim.new(0, 10)
     layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -227,27 +229,41 @@ local function createTab(name)
         activeTabBtn = button
     end)
 
-    tabFrames[name] = frame
     return frame
 end
 
--- Tab Content
+-- Pet Tab (Updated Layout)
 local petTab = createTab("Pet")
-local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
-local weightInput = createInput("Weight (KG)") weightInput.Parent = petTab
-local ageInput = createInput("Age") ageInput.Parent = petTab
-createButton("Spawn", function()
-    local name = petNameInput.Text
-    local weight = tonumber(weightInput.Text)
-    local age = tonumber(ageInput.Text)
 
-    if name ~= "" and weight and age then
-        Spawner.SpawnPet(name, weight, age)
+local grid = Instance.new("UIGridLayout")
+grid.CellSize = UDim2.new(0, 180, 0, 36)
+grid.CellPadding = UDim2.new(0, 10, 0, 10)
+grid.FillDirection = Enum.FillDirection.Horizontal
+grid.SortOrder = Enum.SortOrder.LayoutOrder
+grid.Parent = petTab
+
+local petNameInput = createInput("Pet Name") petNameInput.Parent = petTab
+local mutationInput = createInput("Mutation") mutationInput.Parent = petTab
+local ageInput = createInput("Age") ageInput.Parent = petTab
+local weightInput = createInput("Weight (KG)") weightInput.Parent = petTab
+
+local spawnBtn = createButton("Spawn", function()
+    local name = petNameInput.Text
+    local mutation = mutationInput.Text
+    local age = tonumber(ageInput.Text)
+    local weight = tonumber(weightInput.Text)
+
+    if name ~= "" and mutation ~= "" and age and weight then
+        Spawner.SpawnPet(name, weight, age, mutation)
     else
         warn("Please fill all fields with valid data.")
     end
-end).Parent = petTab
+end)
+spawnBtn.Size = UDim2.new(0, 370, 0, 36)
+spawnBtn.LayoutOrder = 99
+spawnBtn.Parent = petTab
 
+-- Other Tabs (Unchanged)
 local seedTab = createTab("Seed")
 local seedInput = createInput("Seed Name") seedInput.Parent = seedTab
 createButton("Spawn", function()
