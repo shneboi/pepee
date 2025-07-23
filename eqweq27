@@ -1,30 +1,35 @@
--- Services
+--// Services
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
+
+--// Load Spawner Module Safely
+local success, Spawner = pcall(function()
+    return require(game.ReplicatedStorage:WaitForChild("Spawner"))
+end)
 
 if not success or not Spawner then
     warn("❌ Failed to load new Spawner module.")
     return
 end
 
--- Main UI
+--// GUI Initialization
 local gui = Instance.new("ScreenGui")
 gui.ResetOnSpawn = false
 gui.Name = "ModernSpawnerUI"
 gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Background Image (Stormy Sky or Lightning)
+--// Background Image
 local bgImage = Instance.new("ImageLabel")
 bgImage.Size = UDim2.new(1, 0, 1, 0)
 bgImage.Position = UDim2.new(0, 0, 0, 0)
 bgImage.BackgroundTransparency = 1
-bgImage.Image = "rbxassetid://17241247736" -- Dark stormy cloud w/ lightning (replace as needed)
+bgImage.Image = "rbxassetid://17241247736"
 bgImage.ScaleType = Enum.ScaleType.Crop
 bgImage.ZIndex = 0
 bgImage.Parent = gui
 
--- Main Frame
+--// Main Frame
 local main = Instance.new("Frame")
 main.Size = UDim2.new(0, 415, 0, 290)
 main.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -37,6 +42,11 @@ main.Draggable = true
 main.ZIndex = 1
 main.Parent = gui
 
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
+Instance.new("UIStroke", main).Color = Color3.fromRGB(0, 170, 255)
+main.UIStroke.Thickness = 2
+main.UIStroke.Transparency = 0.1
+
 local gradient = Instance.new("UIGradient")
 gradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 170, 255)),
@@ -46,17 +56,7 @@ gradient.Color = ColorSequence.new({
 gradient.Rotation = 90
 gradient.Parent = main
 
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 10)
-corner.Parent = main
-
-local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(0, 170, 255)
-stroke.Thickness = 2
-stroke.Transparency = 0.1
-stroke.Parent = main
-
--- Title
+--// Title
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, -60, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
@@ -71,43 +71,36 @@ title.TextStrokeTransparency = 0.3
 title.ZIndex = 2
 title.Parent = main
 
--- Exit Button
-local exitBtn = Instance.new("TextButton")
-exitBtn.Size = UDim2.new(0, 24, 0, 24)
-exitBtn.Position = UDim2.new(1, -30, 0, 8)
-exitBtn.Text = "X"
-exitBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
-exitBtn.TextColor3 = Color3.fromRGB(255, 80, 80)
-exitBtn.Font = Enum.Font.GothamBold
-exitBtn.TextSize = 14
-exitBtn.ZIndex = 2
-exitBtn.Parent = main
-Instance.new("UICorner", exitBtn).CornerRadius = UDim.new(0, 10)
+--// Exit & Minimize Buttons
+local function createControlBtn(text, pos, color)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 24, 0, 24)
+    btn.Position = pos
+    btn.Text = text
+    btn.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+    btn.TextColor3 = color
+    btn.Font = Enum.Font.GothamBold
+    btn.TextSize = 14
+    btn.ZIndex = 2
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 10)
+    btn.Parent = main
+    return btn
+end
 
+local exitBtn = createControlBtn("X", UDim2.new(1, -30, 0, 8), Color3.fromRGB(255, 80, 80))
 exitBtn.MouseButton1Click:Connect(function()
     gui:Destroy()
 end)
 
--- Minimize Button
-local minimizeBtn = Instance.new("TextButton")
-minimizeBtn.Size = UDim2.new(0, 24, 0, 24)
-minimizeBtn.Position = UDim2.new(1, -60, 0, 8)
-minimizeBtn.Text = "_"
-minimizeBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
-minimizeBtn.TextColor3 = Color3.fromRGB(80, 255, 255)
-minimizeBtn.Font = Enum.Font.GothamBold
-minimizeBtn.TextSize = 18
-minimizeBtn.ZIndex = 2
-minimizeBtn.Parent = main
-Instance.new("UICorner", minimizeBtn).CornerRadius = UDim.new(0, 10)
+local minimizeBtn = createControlBtn("_", UDim2.new(1, -60, 0, 8), Color3.fromRGB(80, 255, 255))
 
--- Tab Bar
+--// Tab Bar & Content Area
 local tabBar = Instance.new("Frame")
 tabBar.Size = UDim2.new(1, -20, 0, 30)
 tabBar.Position = UDim2.new(0, 10, 0, 45)
 tabBar.BackgroundTransparency = 1
-tabBar.Name = "TabBar"
 tabBar.ZIndex = 2
+tabBar.Name = "TabBar"
 tabBar.Parent = main
 
 local tabLayout = Instance.new("UIListLayout")
@@ -121,12 +114,12 @@ local content = Instance.new("Frame")
 content.Size = UDim2.new(1, -40, 1, -90)
 content.Position = UDim2.new(0, 20, 0, 80)
 content.BackgroundTransparency = 1
-content.Name = "Content"
 content.ZIndex = 2
+content.Name = "Content"
 content.Parent = main
 
--- Input Creator
-local function createInput(placeholder)
+--// Helper Functions
+local function createInput(placeholder, parent)
     local box = Instance.new("TextBox")
     box.Size = UDim2.new(0, 180, 0, 36)
     box.PlaceholderText = placeholder
@@ -146,10 +139,10 @@ local function createInput(placeholder)
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     stroke.Parent = box
 
+    box.Parent = parent
     return box
 end
 
--- Button Creator
 local function createButton(text, callback)
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(0, 370, 0, 36)
@@ -173,7 +166,7 @@ local function createButton(text, callback)
     return btn
 end
 
--- Tab Creator
+--// Tabs
 local tabFrames = {}
 local activeTabBtn
 
@@ -192,7 +185,6 @@ local function createTab(name)
     button.TextColor3 = Color3.fromRGB(0, 170, 255)
     button.Font = Enum.Font.GothamSemibold
     button.TextSize = 14
-    button.AutoButtonColor = true
     button.ZIndex = 2
     button.Parent = tabBar
     Instance.new("UICorner", button).CornerRadius = UDim.new(0, 10)
@@ -204,142 +196,18 @@ local function createTab(name)
     frame.ZIndex = 2
     frame.Parent = content
 
-    tabFrames[name] = frame
-
     local layout = Instance.new("UIListLayout")
     layout.Padding = UDim.new(0, 10)
     layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
     layout.SortOrder = Enum.SortOrder.LayoutOrder
     layout.Parent = frame
 
+    tabFrames[name] = frame
+
     button.MouseButton1Click:Connect(function()
         for _, f in pairs(tabFrames) do
             f.Visible = false
         end
         frame.Visible = true
-
         if activeTabBtn then
-            activeTabBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
-        end
-        button.BackgroundColor3 = Color3.fromRGB(255, 255, 80)
-        activeTabBtn = button
-    end)
-
-    return frame
-end
-
--- Pet Tab with Mutation Logic
-local petTab = createTab("Pet")
-
-local container = Instance.new("Frame")
-container.Size = UDim2.new(1, 0, 1, 0)
-container.BackgroundTransparency = 1
-container.Parent = petTab
-
-local uiList = Instance.new("UIListLayout")
-uiList.Padding = UDim.new(0, 10)
-uiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
-uiList.SortOrder = Enum.SortOrder.LayoutOrder
-uiList.Parent = container
-
-local row1 = Instance.new("Frame")
-row1.Size = UDim2.new(1, 0, 0, 36)
-row1.BackgroundTransparency = 1
-row1.LayoutOrder = 1
-row1.Parent = container
-
-local row1Layout = Instance.new("UIListLayout")
-row1Layout.FillDirection = Enum.FillDirection.Horizontal
-row1Layout.Padding = UDim.new(0, 10)
-row1Layout.Parent = row1
-
-local petNameInput = createInput("Pet Name") petNameInput.Parent = row1
-local mutationInput = createInput("Mutation") mutationInput.Parent = row1
-
-local row2 = Instance.new("Frame")
-row2.Size = UDim2.new(1, 0, 0, 36)
-row2.BackgroundTransparency = 1
-row2.LayoutOrder = 2
-row2.Parent = container
-
-local row2Layout = Instance.new("UIListLayout")
-row2Layout.FillDirection = Enum.FillDirection.Horizontal
-row2Layout.Padding = UDim.new(0, 10)
-row2Layout.Parent = row2
-
-local ageInput = createInput("Age") ageInput.Parent = row2
-local weightInput = createInput("Weight (KG)") weightInput.Parent = row2
-
--- Spawn button with mutation logic
-local spawnBtn = createButton("⚡ Spawn", function()
-    local rawName = petNameInput.Text
-    local mutation = mutationInput.Text
-    local age = tonumber(ageInput.Text)
-    local weight = tonumber(weightInput.Text)
-
-    local name = rawName
-    if mutation ~= "" then
-        name = mutation .. " " .. rawName
-    end
-
-    if rawName ~= "" and age and weight then
-        Spawner.SpawnPet(name, weight, age, mutation)
-    else
-        warn("Please fill all fields with valid data.")
-    end
-end)
-spawnBtn.LayoutOrder = 3
-spawnBtn.Parent = container
-
--- Other Tabs
-local seedTab = createTab("Seed")
-local seedInput = createInput("Seed Name") seedInput.Parent = seedTab
-createButton("Spawn", function()
-    if seedInput.Text ~= "" then
-        Spawner.SpawnSeed(seedInput.Text)
-    end
-end).Parent = seedTab
-
-local eggTab = createTab("Egg")
-local eggInput = createInput("Egg Name") eggInput.Parent = eggTab
-createButton("Spawn", function()
-    if eggInput.Text ~= "" then
-        Spawner.SpawnEgg(eggInput.Text)
-    end
-end).Parent = eggTab
-
-local spinTab = createTab("Spin")
-local spinInput = createInput("Spin Name") spinInput.Parent = spinTab
-createButton("Spin", function()
-    if spinInput.Text ~= "" then
-        Spawner.Spin(spinInput.Text)
-    end
-end).Parent = spinTab
-
--- Minimize Logic
-local minimized = false
-local originalSize = main.Size
-local originalTitle = title.Text
-
-minimizeBtn.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    if minimized then
-        main.Size = UDim2.new(0, 320, 0, 50)
-        tabBar.Visible = false
-        content.Visible = false
-        title.Text = "Rin Scripts"
-    else
-        main.Size = originalSize
-        tabBar.Visible = true
-        content.Visible = true
-        title.Text = originalTitle
-        for _, f in pairs(tabFrames) do
-            f.Visible = false
-        end
-        tabFrames["Pet"].Visible = true
-    end
-end)
-
--- Default Tab
-petTab.Visible = true
-getgenv().Executed = nil
+            activeTabBtn.BackgroundColor3 = Color3.fromRGB(30, 30
