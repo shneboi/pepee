@@ -216,37 +216,3 @@ Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
 Minimize.TextSize = 26.000
 Minimize.TextStrokeColor3 = Color3.fromRGB(100, 0, 0)
 Minimize.TextStrokeTransparency = 0.000
-
--- Exit button: destroys the entire UI
-Exit.MouseButton1Click:Connect(function()
-	ScreenGui:Destroy()
-end)
-
--- Minimize button: collapses the frame and hides content
-local minimized = false
-local originalSize = main.Size
-local originalTitle = TextLabel.Text
-
-Minimize.MouseButton1Click:Connect(function()
-	minimized = not minimized
-
-	if minimized then
-		main.Size = UDim2.new(0, 415, 0, 60)
-		TextLabel.Text = "Rin Scripts"
-
-		-- Hide all elements except title + buttons
-		for _, child in pairs(main:GetChildren()) do
-			if child ~= TextLabel and child ~= Exit and child ~= Minimize and child ~= ImageLabel and child ~= ImageLabel_2 then
-				child.Visible = false
-			end
-		end
-	else
-		main.Size = originalSize
-		TextLabel.Text = originalTitle
-
-		-- Show all children again
-		for _, child in pairs(main:GetChildren()) do
-			child.Visible = true
-		end
-	end
-end)
