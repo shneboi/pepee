@@ -208,29 +208,40 @@ Minimize.Position = UDim2.new(0.771084309, 0, 0.0482758619, 0)
 Minimize.Size = UDim2.new(0, 32, 0, 30)
 Minimize.ZIndex = 2
 Minimize.Font = Enum.Font.Unknown
-Minimize.Text = "_"
+Minimize.Text = "-"
 Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
 Minimize.TextSize = 26.000
 Minimize.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 
--- Minimize Logic (simplified - no tabs)
+-- Minimize Logic (with title + green outline)
 local minimized = false
 local originalSize = main.Size
-local originalPosition = main.Position
+
+-- Optional stroke for minimized border
+local outline = Instance.new("UIStroke")
+outline.Color = Color3.fromRGB(0, 255, 0)
+outline.Thickness = 3
+outline.Enabled = false
+outline.Parent = main
 
 Minimize.MouseButton1Click:Connect(function()
 	minimized = not minimized
 	if minimized then
 		main.Size = UDim2.new(0, 415, 0, 60)
 		for _, child in ipairs(main:GetChildren()) do
-			if child:IsA("GuiObject") and child ~= ImageLabel and child ~= Minimize and child ~= Exit then
+			if child:IsA("GuiObject") and not table.find({ImageLabel, Minimize, Exit, TextLabel}, child) then
 				child.Visible = false
+			else
+				child.Visible = true
 			end
 		end
+		outline.Enabled = true
 	else
 		main.Size = originalSize
 		for _, child in ipairs(main:GetChildren()) do
 			child.Visible = true
 		end
+		outline.Enabled = false
 	end
 end)
+
