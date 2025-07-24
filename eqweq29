@@ -213,11 +213,12 @@ Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
 Minimize.TextSize = 26.000
 Minimize.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 
--- Minimize Logic (with title + green outline)
+-- Minimize Logic (buttons fixed, border visible)
 local minimized = false
 local originalSize = main.Size
+local originalTransparency = main.BackgroundTransparency
 
--- Optional stroke for minimized border
+-- Green outline setup
 local outline = Instance.new("UIStroke")
 outline.Color = Color3.fromRGB(0, 255, 0)
 outline.Thickness = 3
@@ -227,7 +228,9 @@ outline.Parent = main
 Minimize.MouseButton1Click:Connect(function()
 	minimized = not minimized
 	if minimized then
-		main.Size = UDim2.new(0, 415, 0, 60)
+		-- Maintain same width/height to prevent shifting
+		main.Size = originalSize
+		main.BackgroundTransparency = 0 -- Make stroke visible
 		for _, child in ipairs(main:GetChildren()) do
 			if child:IsA("GuiObject") and not table.find({ImageLabel, Minimize, Exit, TextLabel}, child) then
 				child.Visible = false
@@ -238,6 +241,7 @@ Minimize.MouseButton1Click:Connect(function()
 		outline.Enabled = true
 	else
 		main.Size = originalSize
+		main.BackgroundTransparency = originalTransparency
 		for _, child in ipairs(main:GetChildren()) do
 			child.Visible = true
 		end
