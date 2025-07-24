@@ -34,16 +34,16 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BorderSizePixel = 0
 TextLabel.LayoutOrder = 1
-TextLabel.Position = UDim2.new(0.0145266615, 0, -0.0206896551, 0)
+TextLabel.Position = UDim2.new(0.0482616015, 0, -0.0206896551, 0)
 TextLabel.Size = UDim2.new(0, 168, 0, 71)
 TextLabel.ZIndex = 2
-TextLabel.Font = Enum.Font.Unknown
+TextLabel.Font = Enum.Font.GothamBold
 TextLabel.LineHeight = 2.160
 TextLabel.Text = "Rin Scripts Pro"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 29.000
-TextLabel.TextStrokeColor3 = Color3.fromRGB(85, 170, 0)
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 TextLabel.TextStrokeTransparency = 0.000
 TextLabel.TextTransparency = 0.000
 TextLabel.TextWrapped = true
@@ -56,27 +56,26 @@ Age.BorderColor3 = Color3.fromRGB(85, 0, 0)
 Age.BorderSizePixel = 3
 Age.Position = UDim2.new(0.115154371, 0, 0.570999026, 0)
 Age.Size = UDim2.new(0, 141, 0, 34)
-Age.Font = Enum.Font.Unknown
+Age.Font = Enum.Font.GothamBold
 Age.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 Age.PlaceholderText = "Age"
 Age.Text = ""
 Age.TextColor3 = Color3.fromRGB(255, 255, 255)
-Age.TextSize = 15.000
-Age.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+Age.TextSize = 11.000
+Age.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 Age.TextStrokeTransparency = 0.000
 
 Spawn.Name = "Spawn"
 Spawn.Parent = main
-Spawn.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-Spawn.BorderColor3 = Color3.fromRGB(0, 170, 0)
+Spawn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+Spawn.BorderColor3 = Color3.fromRGB(0, 85, 0)
 Spawn.BorderSizePixel = 3
-Spawn.Position = UDim2.new(0.112744726, 0, 0.794485986, 0)
+Spawn.Position = UDim2.new(0.112744726, 0, 0.770348072, 0)
 Spawn.Size = UDim2.new(0, 320, 0, 40)
-Spawn.Font = Enum.Font.Unknown
+Spawn.Font = Enum.Font.GothamBold
 Spawn.Text = "Spawn"
 Spawn.TextColor3 = Color3.fromRGB(255, 255, 255)
-Spawn.TextScaled = true
-Spawn.TextSize = 54.000
+Spawn.TextSize = 26.000
 Spawn.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 Spawn.TextStrokeTransparency = 0.000
 Spawn.TextWrapped = true
@@ -89,7 +88,7 @@ Exit.BorderSizePixel = 3
 Exit.Position = UDim2.new(0.882424235, 0, 0.0486616455, 0)
 Exit.Size = UDim2.new(0, 32, 0, 30)
 Exit.ZIndex = 2
-Exit.Font = Enum.Font.Unknown
+Exit.Font = Enum.Font.GothamBold
 Exit.Text = "x"
 Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
 Exit.TextSize = 26.000
@@ -102,14 +101,14 @@ TextLabel_2.BackgroundTransparency = 1.000
 TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_2.BorderSizePixel = 0
 TextLabel_2.LayoutOrder = 1
-TextLabel_2.Position = UDim2.new(0.904215097, 0, 0.895297766, 0)
-TextLabel_2.Size = UDim2.new(0, 39, 0, 30)
-TextLabel_2.Font = Enum.Font.Unknown
+TextLabel_2.Position = UDim2.new(0.913853645, 0, 0.22288397, 0)
+TextLabel_2.Size = UDim2.new(0, 35, 0, 22)
+TextLabel_2.Font = Enum.Font.GothamBold
 TextLabel_2.LineHeight = 2.160
 TextLabel_2.Text = "v.5"
 TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.TextSize = 23.000
-TextLabel_2.TextStrokeColor3 = Color3.fromRGB(85, 170, 0)
+TextLabel_2.TextSize = 16.000
+TextLabel_2.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 TextLabel_2.TextStrokeTransparency = 0.000
 TextLabel_2.TextTransparency = 0.000
 TextLabel_2.TextWrapped = true
@@ -122,20 +121,20 @@ TextLabel_3.BorderSizePixel = 0
 TextLabel_3.LayoutOrder = 1
 TextLabel_3.Position = UDim2.new(0.0139377825, 0, 0.245390162, 0)
 TextLabel_3.Size = UDim2.new(0, 416, 0, 24)
-TextLabel_3.Font = Enum.Font.Unknown
+TextLabel_3.Font = Enum.Font.GothamBold
 TextLabel_3.LineHeight = 2.160
 TextLabel_3.Text = "Pet Spawner"
 TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_3.TextSize = 26.000
-TextLabel_3.TextStrokeColor3 = Color3.fromRGB(85, 170, 0)
+TextLabel_3.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 TextLabel_3.TextStrokeTransparency = 0.000
 TextLabel_3.TextTransparency = 0.000
 TextLabel_3.TextWrapped = true
 
 ImageLabel.Parent = main
 ImageLabel.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ImageLabel.BorderSizePixel = 0
+ImageLabel.BorderColor3 = Color3.fromRGB(85, 0, 0)
+ImageLabel.BorderSizePixel = 3
 ImageLabel.Size = UDim2.new(0, 415, 0, 60)
 ImageLabel.Image = "rbxassetid://15910695828"
 ImageLabel.ScaleType = Enum.ScaleType.Tile
@@ -158,13 +157,13 @@ Weight.BorderColor3 = Color3.fromRGB(85, 0, 0)
 Weight.BorderSizePixel = 3
 Weight.Position = UDim2.new(0.544070005, 0, 0.570999026, 0)
 Weight.Size = UDim2.new(0, 141, 0, 34)
-Weight.Font = Enum.Font.Unknown
+Weight.Font = Enum.Font.GothamBold
 Weight.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 Weight.PlaceholderText = "Weight"
 Weight.Text = ""
 Weight.TextColor3 = Color3.fromRGB(255, 255, 255)
-Weight.TextSize = 15.000
-Weight.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+Weight.TextSize = 11.000
+Weight.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 Weight.TextStrokeTransparency = 0.000
 
 Mutations.Name = "Mutations"
@@ -174,13 +173,13 @@ Mutations.BorderColor3 = Color3.fromRGB(85, 0, 0)
 Mutations.BorderSizePixel = 3
 Mutations.Position = UDim2.new(0.115154371, 0, 0.395136982, 0)
 Mutations.Size = UDim2.new(0, 141, 0, 34)
-Mutations.Font = Enum.Font.Unknown
+Mutations.Font = Enum.Font.GothamBold
 Mutations.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 Mutations.PlaceholderText = "Mutations"
 Mutations.Text = ""
 Mutations.TextColor3 = Color3.fromRGB(255, 255, 255)
-Mutations.TextSize = 15.000
-Mutations.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+Mutations.TextSize = 11.000
+Mutations.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 Mutations.TextStrokeTransparency = 0.000
 
 PetName.Name = "Pet Name"
@@ -190,47 +189,36 @@ PetName.BorderColor3 = Color3.fromRGB(85, 0, 0)
 PetName.BorderSizePixel = 3
 PetName.Position = UDim2.new(0.541660368, 0, 0.395136982, 0)
 PetName.Size = UDim2.new(0, 141, 0, 34)
-PetName.Font = Enum.Font.Unknown
+PetName.Font = Enum.Font.GothamBold
 PetName.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 PetName.PlaceholderText = "Pet Name"
 PetName.Text = ""
 PetName.TextColor3 = Color3.fromRGB(255, 255, 255)
-PetName.TextSize = 15.000
-PetName.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+PetName.TextSize = 11.000
+PetName.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
 PetName.TextStrokeTransparency = 0.000
 
 Minimize.Name = "Minimize"
 Minimize.Parent = main
-Minimize.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-Minimize.BorderColor3 = Color3.fromRGB(0, 170, 0)
+Minimize.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+Minimize.BorderColor3 = Color3.fromRGB(0, 85, 0)
 Minimize.BorderSizePixel = 3
 Minimize.Position = UDim2.new(0.771084309, 0, 0.0482758619, 0)
 Minimize.Size = UDim2.new(0, 32, 0, 30)
-Minimize.ZIndex = 2
-Minimize.Font = Enum.Font.Unknown
+Minimize.Font = Enum.Font.GothamBold
 Minimize.Text = "-"
 Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
 Minimize.TextSize = 26.000
 Minimize.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 
--- Minimize Logic (buttons fixed, border visible)
+-- Minimize Logic (with title shown)
 local minimized = false
 local originalSize = main.Size
-local originalTransparency = main.BackgroundTransparency
-
--- Green outline setup
-local outline = Instance.new("UIStroke")
-outline.Color = Color3.fromRGB(0, 255, 0)
-outline.Thickness = 3
-outline.Enabled = false
-outline.Parent = main
 
 Minimize.MouseButton1Click:Connect(function()
 	minimized = not minimized
 	if minimized then
-		-- Maintain same width/height to prevent shifting
-		main.Size = originalSize
-		main.BackgroundTransparency = 0 -- Make stroke visible
+		main.Size = UDim2.new(0, 415, 0, 60)
 		for _, child in ipairs(main:GetChildren()) do
 			if child:IsA("GuiObject") and not table.find({ImageLabel, Minimize, Exit, TextLabel}, child) then
 				child.Visible = false
@@ -238,14 +226,10 @@ Minimize.MouseButton1Click:Connect(function()
 				child.Visible = true
 			end
 		end
-		outline.Enabled = true
 	else
 		main.Size = originalSize
-		main.BackgroundTransparency = originalTransparency
 		for _, child in ipairs(main:GetChildren()) do
 			child.Visible = true
 		end
-		outline.Enabled = false
 	end
 end)
-
