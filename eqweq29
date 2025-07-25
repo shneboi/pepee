@@ -1,3 +1,8 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local ScreenGui = Instance.new("ScreenGui")
 local PetSpawnerMenu = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
@@ -39,8 +44,7 @@ PetSpawnerMenu.BorderSizePixel = 0
 PetSpawnerMenu.Position = UDim2.new(0.599893749, 0, 0.490662128, 0)
 PetSpawnerMenu.Size = UDim2.new(0, 415, 0, 290)
 PetSpawnerMenu.Active = true
-PetSpawnerMenu.Dragggable = true
-
+PetSpawnerMenu.Draggable = true
 
 TextLabel.Parent = PetSpawnerMenu
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -151,6 +155,7 @@ ImageLabel.BorderColor3 = Color3.fromRGB(92, 198, 0)
 ImageLabel.BorderSizePixel = 3
 ImageLabel.Size = UDim2.new(0, 415, 0, 60)
 ImageLabel.Image = "rbxassetid://15910695828"
+ImageLabel.ImageTransparency = 0.200
 ImageLabel.ScaleType = Enum.ScaleType.Tile
 ImageLabel.TileSize = UDim2.new(0.400000006, 0, 2.0999999, 0)
 
@@ -161,6 +166,7 @@ ImageLabel_2.BorderSizePixel = 4
 ImageLabel_2.Size = UDim2.new(0, 415, 0, 290)
 ImageLabel_2.ZIndex = 0
 ImageLabel_2.Image = "rbxassetid://15910695828"
+ImageLabel_2.ImageTransparency = 0.200
 ImageLabel_2.ScaleType = Enum.ScaleType.Tile
 ImageLabel_2.TileSize = UDim2.new(0.400000006, 0, 0.400000006, 0)
 
@@ -219,6 +225,7 @@ Minimize.BorderColor3 = Color3.fromRGB(0, 85, 0)
 Minimize.BorderSizePixel = 3
 Minimize.Position = UDim2.new(0.771084309, 0, 0.0482758619, 0)
 Minimize.Size = UDim2.new(0, 32, 0, 30)
+Minimize.ZIndex = 2
 Minimize.Font = Enum.Font.Unknown
 Minimize.Text = "-"
 Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -244,7 +251,9 @@ ImageLabel_3.BackgroundTransparency = 1.000
 ImageLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel_3.BorderSizePixel = 100
 ImageLabel_3.Size = UDim2.new(0, 68, 0, 31)
+ImageLabel_3.ZIndex = 0
 ImageLabel_3.Image = "rbxassetid://15910695828"
+ImageLabel_3.ImageTransparency = 0.200
 
 PetSpawnerButton.Name = "PetSpawnerButton"
 PetSpawnerButton.Parent = ScreenGui
@@ -265,7 +274,9 @@ ImageLabel_4.BackgroundTransparency = 1.000
 ImageLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel_4.BorderSizePixel = 0
 ImageLabel_4.Size = UDim2.new(0, 69, 0, 31)
+ImageLabel_4.ZIndex = 0
 ImageLabel_4.Image = "rbxassetid://15910695828"
+ImageLabel_4.ImageTransparency = 0.200
 
 SeedSpawnerMenu.Name = "SeedSpawnerMenu"
 SeedSpawnerMenu.Parent = ScreenGui
@@ -275,7 +286,7 @@ SeedSpawnerMenu.BorderSizePixel = 0
 SeedSpawnerMenu.Position = UDim2.new(0.599893749, 0, 0.490662128, 0)
 SeedSpawnerMenu.Size = UDim2.new(0, 414, 0, 290)
 SeedSpawnerMenu.Active = true
-SeedSpawnerMenu.Dragggable = true
+SeedSpawnerMenu.Draggable = true
 
 ImageLabel_5.Parent = SeedSpawnerMenu
 ImageLabel_5.BackgroundColor3 = Color3.fromRGB(0, 167, 0)
@@ -283,6 +294,7 @@ ImageLabel_5.BorderColor3 = Color3.fromRGB(92, 198, 0)
 ImageLabel_5.BorderSizePixel = 3
 ImageLabel_5.Size = UDim2.new(0, 415, 0, 60)
 ImageLabel_5.Image = "rbxassetid://15910695828"
+ImageLabel_5.ImageTransparency = 0.200
 ImageLabel_5.ScaleType = Enum.ScaleType.Tile
 ImageLabel_5.TileSize = UDim2.new(0.400000006, 0, 2.0999999, 0)
 
@@ -293,6 +305,7 @@ ImageLabel_6.BorderSizePixel = 4
 ImageLabel_6.Size = UDim2.new(0, 415, 0, 290)
 ImageLabel_6.ZIndex = 0
 ImageLabel_6.Image = "rbxassetid://15910695828"
+ImageLabel_6.ImageTransparency = 0.200
 ImageLabel_6.ScaleType = Enum.ScaleType.Tile
 ImageLabel_6.TileSize = UDim2.new(0.400000006, 0, 0.400000006, 0)
 
@@ -303,6 +316,7 @@ Minimize_2.BorderColor3 = Color3.fromRGB(0, 85, 0)
 Minimize_2.BorderSizePixel = 3
 Minimize_2.Position = UDim2.new(0.771084309, 0, 0.0482758619, 0)
 Minimize_2.Size = UDim2.new(0, 32, 0, 30)
+Minimize_2.ZIndex = 2
 Minimize_2.Font = Enum.Font.Unknown
 Minimize_2.Text = "-"
 Minimize_2.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -352,6 +366,7 @@ TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_5.BorderSizePixel = 0
 TextLabel_5.Position = UDim2.new(0.256038636, 0, 0.220689654, 0)
 TextLabel_5.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_5.ZIndex = 2
 TextLabel_5.Font = Enum.Font.Unknown
 TextLabel_5.Text = "Seeds Spawner"
 TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -364,6 +379,7 @@ SeedName.BorderColor3 = Color3.fromRGB(85, 0, 0)
 SeedName.BorderSizePixel = 3
 SeedName.Position = UDim2.new(0.15458937, 0, 0.45517242, 0)
 SeedName.Size = UDim2.new(0, 302, 0, 50)
+SeedName.ZIndex = 2
 SeedName.Font = Enum.Font.Unknown
 SeedName.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
 SeedName.PlaceholderText = "Seed Name"
@@ -378,6 +394,7 @@ SpawnSeedButton.BorderColor3 = Color3.fromRGB(0, 85, 0)
 SpawnSeedButton.BorderSizePixel = 3
 SpawnSeedButton.Position = UDim2.new(0.15458937, 0, 0.686206877, 0)
 SpawnSeedButton.Size = UDim2.new(0, 302, 0, 50)
+SpawnSeedButton.ZIndex = 2
 SpawnSeedButton.Font = Enum.Font.Unknown
 SpawnSeedButton.Text = "SPAWN"
 SpawnSeedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -386,103 +403,42 @@ SpawnSeedButton.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 SpawnSeedButton.TextStrokeTransparency = 0.000
 SpawnSeedButton.TextWrapped = true
 
--- Fix background layering
-ImageLabel.BackgroundTransparency = 1
-ImageLabel.ImageTransparency = 0.2
-ImageLabel.ZIndex = 0
-
-ImageLabel_2.BackgroundTransparency = 1
-ImageLabel_2.ImageTransparency = 0.2
-ImageLabel_2.ZIndex = 0
-
-ImageLabel_5.BackgroundTransparency = 1
-ImageLabel_5.ImageTransparency = 0.2
-ImageLabel_5.ZIndex = 0
-
-ImageLabel_6.BackgroundTransparency = 1
-ImageLabel_6.ImageTransparency = 0.2
-ImageLabel_6.ZIndex = 0
-
--- Raise UI elements above background
-for _, obj in ipairs(PetSpawnerMenu:GetDescendants()) do
-	if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
-		obj.ZIndex = 2
+-- Helper function to safely set ZIndex and transparency
+local function configureElement(element, zindex, bgTransparency, imgTransparency)
+	if element:IsA("GuiObject") then
+		element.ZIndex = zindex
+	end
+	if element:IsA("ImageLabel") then
+		element.BackgroundTransparency = bgTransparency or 1
+		element.ImageTransparency = imgTransparency or 0.2
 	end
 end
 
-for _, obj in ipairs(SeedSpawnerMenu:GetDescendants()) do
-	if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
-		obj.ZIndex = 2
+-- Configure PetSpawnerMenu
+for _, child in pairs(PetSpawnerMenu:GetDescendants()) do
+	if child:IsA("TextLabel") or child:IsA("TextBox") or child:IsA("TextButton") then
+		child.ZIndex = 2
+	elseif child:IsA("ImageLabel") then
+		configureElement(child, 0, 1, 0.2)
 	end
 end
 
--- Initial visibility
-PetSpawnerMenu.Visible = true
-SeedSpawnerMenu.Visible = false
-
--- Button logic
-Exit.MouseButton1Click:Connect(function()
-	PetSpawnerMenu.Visible = false
-end)
-
-Exit_2.MouseButton1Click:Connect(function()
-	SeedSpawnerMenu.Visible = false
-end)
-
-Minimize.MouseButton1Click:Connect(function()
-	PetSpawnerMenu.Visible = not PetSpawnerMenu.Visible
-end)
-
-Minimize_2.MouseButton1Click:Connect(function()
-	SeedSpawnerMenu.Visible = not SeedSpawnerMenu.Visible
-end)
-
-PetSpawnerButton.MouseButton1Click:Connect(function()
-	PetSpawnerMenu.Visible = true
-	SeedSpawnerMenu.Visible = false
-end)
-
-SeedSpawnerButton.MouseButton1Click:Connect(function()
-	PetSpawnerMenu.Visible = false
-	SeedSpawnerMenu.Visible = true
-end)
-
--- Load Spawner module
-local success, Spawner = pcall(function()
-	return loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
-end)
-
-if not success or not Spawner then
-	warn("❌ Failed to load Spawner module.")
-	return
+-- Configure SeedSpawnerMenu
+for _, child in pairs(SeedSpawnerMenu:GetDescendants()) do
+	if child:IsA("TextLabel") or child:IsA("TextBox") or child:IsA("TextButton") then
+		child.ZIndex = 2
+	elseif child:IsA("ImageLabel") then
+		configureElement(child, 0, 1, 0.2)
+	end
 end
 
-Spawner.Load()
-
--- Pet spawn logic
-SpawnPetButton.MouseButton1Click:Connect(function()
-	local petName = PetName.Text
-	local weight = tonumber(Weight.Text)
-	local age = tonumber(Age.Text)
-
-	if petName == "" or not weight or not age then
-		warn("⚠️ Fill in Pet Name, Weight, and Age properly.")
-		return
+-- Configure PetSpawnerButton & SeedSpawnerButton (bottom tabs)
+for _, tabButton in pairs({PetSpawnerButton, SeedSpawnerButton}) do
+	for _, child in pairs(tabButton:GetDescendants()) do
+		if child:IsA("ImageLabel") then
+			configureElement(child, 1, 1, 0.2)
+		elseif child:IsA("TextLabel") then
+			child.ZIndex = 2
+		end
 	end
-
-	Spawner.SpawnPet(petName, weight, age)
-	print("✅ Spawned Pet:", petName, "Weight:", weight, "Age:", age)
-end)
-
--- Seed spawn logic
-SpawnSeedButton.MouseButton1Click:Connect(function()
-	local seedName = SeedName.Text
-
-	if seedName == "" then
-		warn("⚠️ Enter a valid Seed Name.")
-		return
-	end
-
-	Spawner.SpawnSeed(seedName)
-	print("✅ Spawned Seed:", seedName)
-end)
+end
