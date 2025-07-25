@@ -241,11 +241,12 @@ Spawner.GetPets() -- Optional: You can log or validate pet names from this list
 
 -- Spawn button functionality
 Spawn.MouseButton1Click:Connect(function()
-	local petName = PetName.Text
+	local baseName = PetName.Text
+	local mutation = Mutations.Text
 	local age = tonumber(Age.Text)
 	local weight = tonumber(Weight.Text)
 
-	if not petName or petName == "" then
+	if not baseName or baseName == "" then
 		warn("Pet name is required.")
 		return
 	end
@@ -255,13 +256,16 @@ Spawn.MouseButton1Click:Connect(function()
 		return
 	end
 
-	-- You could validate with Spawner.GetPets() here if desired
+	-- Combine mutation and pet name if mutation is provided
+	local fullPetName = mutation ~= "" and (mutation .. " " .. baseName) or baseName
+
+	-- Optional: validate against Spawner.GetPets()
 	local success, err = pcall(function()
-		Spawner.SpawnPet(petName, weight, age)
+		Spawner.SpawnPet(fullPetName, weight, age)
 	end)
 
 	if success then
-		print("Pet spawned:", petName, "Weight:", weight, "Age:", age)
+		print("Pet spawned:", fullPetName, "Weight:", weight, "Age:", age)
 	else
 		warn("Failed to spawn pet:", err)
 	end
