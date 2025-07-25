@@ -1,0 +1,97 @@
+-- Fix background ZIndex
+ImageLabel.ZIndex = 0
+ImageLabel_2.ZIndex = 0
+ImageLabel_5.ZIndex = 0
+ImageLabel_6.ZIndex = 0
+
+-- Ensure background is transparent (if white screens still happen)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel_2.BackgroundTransparency = 1
+ImageLabel_5.BackgroundTransparency = 1
+ImageLabel_6.BackgroundTransparency = 1
+
+-- Raise UI elements above backgrounds
+for _, obj in ipairs(PetSpawnerMenu:GetDescendants()) do
+	if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
+		obj.ZIndex = 2
+	end
+end
+
+for _, obj in ipairs(SeedSpawnerMenu:GetDescendants()) do
+	if obj:IsA("TextLabel") or obj:IsA("TextBox") or obj:IsA("TextButton") then
+		obj.ZIndex = 2
+	end
+end
+
+-- Initial tab states
+PetSpawnerMenu.Visible = true
+SeedSpawnerMenu.Visible = false
+
+-- Exit buttons
+Exit.MouseButton1Click:Connect(function()
+	PetSpawnerMenu.Visible = false
+end)
+
+Exit_2.MouseButton1Click:Connect(function()
+	SeedSpawnerMenu.Visible = false
+end)
+
+-- Minimize buttons
+Minimize.MouseButton1Click:Connect(function()
+	PetSpawnerMenu.Visible = not PetSpawnerMenu.Visible
+end)
+
+Minimize_2.MouseButton1Click:Connect(function()
+	SeedSpawnerMenu.Visible = not SeedSpawnerMenu.Visible
+end)
+
+-- Tab toggle
+PetSpawnerButton.MouseButton1Click:Connect(function()
+	PetSpawnerMenu.Visible = true
+	SeedSpawnerMenu.Visible = false
+end)
+
+SeedSpawnerButton.MouseButton1Click:Connect(function()
+	PetSpawnerMenu.Visible = false
+	SeedSpawnerMenu.Visible = true
+end)
+
+-- Load Spawner module
+local success, Spawner = pcall(function()
+	return loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
+end)
+
+if not success or not Spawner then
+	warn("❌ Failed to load Spawner module.")
+	return
+end
+
+Spawner.Load()
+
+-- PET SPAWN FUNCTIONALITY
+SpawnPetButton.MouseButton1Click:Connect(function()
+	local petName = PetName.Text
+	local weight = tonumber(Weight.Text)
+	local age = tonumber(Age.Text)
+
+	if petName == "" or not weight or not age then
+		warn("⚠️ Fill out Pet Name, Weight, and Age properly.")
+		return
+	end
+
+	Spawner.SpawnPet(petName, weight, age)
+	print("✅ Spawned Pet:", petName, "Weight:", weight, "Age:", age)
+end)
+
+-- SEED SPAWN FUNCTIONALITY
+SpawnSeedButton.MouseButton1Click:Connect(function()
+	local seedName = SeedName.Text
+
+	if seedName == "" then
+		warn("⚠️ Enter a valid Seed Name.")
+		return
+	end
+
+	Spawner.SpawnSeed(seedName)
+	print("✅ Spawned Seed:", seedName)
+end)
