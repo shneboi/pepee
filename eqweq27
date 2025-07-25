@@ -1,0 +1,323 @@
+local ScreenGui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local Age = Instance.new("TextBox")
+local Spawn = Instance.new("TextButton")
+local Exit = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local ImageLabel_2 = Instance.new("ImageLabel")
+local Weight = Instance.new("TextBox")
+local Mutations = Instance.new("TextBox")
+local PetName = Instance.new("TextBox")
+local Minimize = Instance.new("TextButton")
+
+-- Seed Spawner Tab elements
+local SeedName = Instance.new("TextBox")
+local SeedSpawnButton = Instance.new("TextButton")
+local SeedSpawnerTab = Instance.new("TextLabel")
+local SeedTabButton = Instance.new("TextButton")
+
+-- Properties for ScreenGui
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+main.Name = "main"
+main.Parent = ScreenGui
+main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+main.BorderSizePixel = 0
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.Size = UDim2.new(0, 415, 0, 290)
+main.Active = true
+main.Draggable = true
+
+TextLabel.Parent = main
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.LayoutOrder = 1
+TextLabel.Position = UDim2.new(0.0482616015, 0, -0.0206896551, 0)
+TextLabel.Size = UDim2.new(0, 168, 0, 71)
+TextLabel.ZIndex = 2
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.LineHeight = 2.160
+TextLabel.Text = "Rin Scripts Pro"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 29.000
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+TextLabel.TextStrokeTransparency = 0.000
+TextLabel.TextTransparency = 0.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+Age.Name = "Age"
+Age.Parent = main
+Age.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+Age.BorderColor3 = Color3.fromRGB(85, 0, 0)
+Age.BorderSizePixel = 3
+Age.Position = UDim2.new(0.115154371, 0, 0.570999026, 0)
+Age.Size = UDim2.new(0, 141, 0, 34)
+Age.Font = Enum.Font.GothamBold
+Age.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Age.PlaceholderText = "Age"
+Age.Text = ""
+Age.TextColor3 = Color3.fromRGB(255, 255, 255)
+Age.TextSize = 11.000
+Age.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+Age.TextStrokeTransparency = 0.000
+
+Spawn.Name = "Spawn"
+Spawn.Parent = main
+Spawn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+Spawn.BorderColor3 = Color3.fromRGB(0, 85, 0)
+Spawn.BorderSizePixel = 3
+Spawn.Position = UDim2.new(0.112744726, 0, 0.770348072, 0)
+Spawn.Size = UDim2.new(0, 320, 0, 40)
+Spawn.Font = Enum.Font.GothamBold
+Spawn.Text = "Spawn"
+Spawn.TextColor3 = Color3.fromRGB(255, 255, 255)
+Spawn.TextSize = 26.000
+Spawn.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+Spawn.TextStrokeTransparency = 0.000
+Spawn.TextWrapped = true
+
+Exit.Name = "Exit"
+Exit.Parent = main
+Exit.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Exit.BorderColor3 = Color3.fromRGB(182, 0, 0)
+Exit.BorderSizePixel = 3
+Exit.Position = UDim2.new(0.882424235, 0, 0.0486616455, 0)
+Exit.Size = UDim2.new(0, 32, 0, 30)
+Exit.ZIndex = 2
+Exit.Font = Enum.Font.GothamBold
+Exit.Text = "x"
+Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Exit.TextSize = 26.000
+Exit.TextStrokeColor3 = Color3.fromRGB(100, 0, 0)
+Exit.TextStrokeTransparency = 0.000
+
+TextLabel_2.Parent = main
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.LayoutOrder = 1
+TextLabel_2.Position = UDim2.new(0.913853645, 0, 0.22288397, 0)
+TextLabel_2.Size = UDim2.new(0, 35, 0, 22)
+TextLabel_2.Font = Enum.Font.GothamBold
+TextLabel_2.LineHeight = 2.160
+TextLabel_2.Text = "v.5"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 16.000
+TextLabel_2.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+TextLabel_2.TextStrokeTransparency = 0.000
+TextLabel_2.TextTransparency = 0.000
+TextLabel_2.TextWrapped = true
+
+TextLabel_3.Parent = main
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.LayoutOrder = 1
+TextLabel_3.Position = UDim2.new(0.0139377825, 0, 0.245390162, 0)
+TextLabel_3.Size = UDim2.new(0, 416, 0, 24)
+TextLabel_3.Font = Enum.Font.GothamBold
+TextLabel_3.LineHeight = 2.160
+TextLabel_3.Text = "Pet Spawner"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 26.000
+TextLabel_3.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+TextLabel_3.TextStrokeTransparency = 0.000
+TextLabel_3.TextTransparency = 0.000
+TextLabel_3.TextWrapped = true
+
+ImageLabel.Parent = main
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+ImageLabel.BorderColor3 = Color3.fromRGB(85, 0, 0)
+ImageLabel.BorderSizePixel = 3
+ImageLabel.Size = UDim2.new(0, 415, 0, 60)
+ImageLabel.Image = "rbxassetid://15910695828"
+ImageLabel.ScaleType = Enum.ScaleType.Tile
+ImageLabel.TileSize = UDim2.new(0.400000006, 0, 2.0999999, 0)
+
+ImageLabel_2.Parent = main
+ImageLabel_2.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+ImageLabel_2.BorderColor3 = Color3.fromRGB(85, 0, 0)
+ImageLabel_2.BorderSizePixel = 4
+ImageLabel_2.Size = UDim2.new(0, 415, 0, 290)
+ImageLabel_2.ZIndex = 0
+ImageLabel_2.Image = "rbxassetid://15910695828"
+ImageLabel_2.ScaleType = Enum.ScaleType.Tile
+ImageLabel_2.TileSize = UDim2.new(0.400000006, 0, 0.400000006, 0)
+
+Weight.Name = "Weight"
+Weight.Parent = main
+Weight.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+Weight.BorderColor3 = Color3.fromRGB(85, 0, 0)
+Weight.BorderSizePixel = 3
+Weight.Position = UDim2.new(0.115154371, 0, 0.395999074, 0)
+Weight.Size = UDim2.new(0, 141, 0, 34)
+Weight.Font = Enum.Font.GothamBold
+Weight.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Weight.PlaceholderText = "Weight"
+Weight.Text = ""
+Weight.TextColor3 = Color3.fromRGB(255, 255, 255)
+Weight.TextSize = 11.000
+Weight.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+Weight.TextStrokeTransparency = 0.000
+
+Mutations.Name = "Mutations"
+Mutations.Parent = main
+Mutations.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+Mutations.BorderColor3 = Color3.fromRGB(85, 0, 0)
+Mutations.BorderSizePixel = 3
+Mutations.Position = UDim2.new(0.278, 0, 0.570999026, 0)
+Mutations.Size = UDim2.new(0, 141, 0, 34)
+Mutations.Font = Enum.Font.GothamBold
+Mutations.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Mutations.PlaceholderText = "Mutations"
+Mutations.Text = ""
+Mutations.TextColor3 = Color3.fromRGB(255, 255, 255)
+Mutations.TextSize = 11.000
+Mutations.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+Mutations.TextStrokeTransparency = 0.000
+
+PetName.Name = "PetName"
+PetName.Parent = main
+PetName.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+PetName.BorderColor3 = Color3.fromRGB(85, 0, 0)
+PetName.BorderSizePixel = 3
+PetName.Position = UDim2.new(0.115154371, 0, 0.221000731, 0)
+PetName.Size = UDim2.new(0, 141, 0, 34)
+PetName.Font = Enum.Font.GothamBold
+PetName.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+PetName.PlaceholderText = "Pet Name"
+PetName.Text = ""
+PetName.TextColor3 = Color3.fromRGB(255, 255, 255)
+PetName.TextSize = 11.000
+PetName.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+PetName.TextStrokeTransparency = 0.000
+
+Minimize.Name = "Minimize"
+Minimize.Parent = main
+Minimize.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+Minimize.BorderColor3 = Color3.fromRGB(0, 85, 0)
+Minimize.BorderSizePixel = 3
+Minimize.Position = UDim2.new(0.882424235, 0, 0.0486616455, 0)
+Minimize.Size = UDim2.new(0, 32, 0, 30)
+Minimize.ZIndex = 2
+Minimize.Font = Enum.Font.GothamBold
+Minimize.Text = "—"
+Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
+Minimize.TextSize = 26.000
+Minimize.TextStrokeColor3 = Color3.fromRGB(100, 0, 0)
+Minimize.TextStrokeTransparency = 0.000
+
+-- New Seed Spawner Tab elements
+SeedTabButton.Parent = main
+SeedTabButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+SeedTabButton.BorderColor3 = Color3.fromRGB(0, 85, 0)
+SeedTabButton.BorderSizePixel = 3
+SeedTabButton.Position = UDim2.new(0.215, 0, 0.245, 0)
+SeedTabButton.Size = UDim2.new(0, 68, 0, 31)
+SeedTabButton.Font = Enum.Font.GothamBold
+SeedTabButton.Text = "Seed Spawner"
+SeedTabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SeedTabButton.TextSize = 16
+SeedTabButton.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+
+SeedSpawnerTab.Parent = main
+SeedSpawnerTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SeedSpawnerTab.BackgroundTransparency = 1.000
+SeedSpawnerTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SeedSpawnerTab.BorderSizePixel = 0
+SeedSpawnerTab.Position = UDim2.new(0, 0, 0.290, 0)
+SeedSpawnerTab.Size = UDim2.new(0, 415, 0, 290)
+SeedSpawnerTab.Font = Enum.Font.GothamBold
+SeedSpawnerTab.Text = "Seed Spawner"
+SeedSpawnerTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+SeedSpawnerTab.TextSize = 26
+SeedSpawnerTab.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+
+local SeedImageLabel = Instance.new("ImageLabel")
+SeedImageLabel.Parent = main
+SeedImageLabel.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+SeedImageLabel.BorderColor3 = Color3.fromRGB(85, 0, 0)
+SeedImageLabel.BorderSizePixel = 4
+SeedImageLabel.Size = UDim2.new(0, 415, 0, 290)
+SeedImageLabel.ZIndex = 0
+SeedImageLabel.Image = "rbxassetid://15910695828"
+SeedImageLabel.ScaleType = Enum.ScaleType.Tile
+SeedImageLabel.TileSize = UDim2.new(0.400000006, 0, 0.400000006, 0)
+
+SeedName.Name = "SeedName"
+SeedName.Parent = main
+SeedName.BackgroundColor3 = Color3.fromRGB(170, 85, 0)
+SeedName.BorderColor3 = Color3.fromRGB(85, 0, 0)
+SeedName.BorderSizePixel = 3
+SeedName.Position = UDim2.new(0.115, 0, 0.395, 0)
+SeedName.Size = UDim2.new(0, 141, 0, 34)
+SeedName.Font = Enum.Font.GothamBold
+SeedName.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+SeedName.PlaceholderText = "Seed Name"
+SeedName.Text = ""
+SeedName.TextColor3 = Color3.fromRGB(255, 255, 255)
+SeedName.TextSize = 11.000
+SeedName.TextStrokeColor3 = Color3.fromRGB(0, 85, 0)
+SeedName.TextStrokeTransparency = 0.000
+
+SeedSpawnButton.Name = "SeedSpawnButton"
+SeedSpawnButton.Parent = main
+SeedSpawnButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+SeedSpawnButton.BorderColor3 = Color3.fromRGB(0, 85, 0)
+SeedSpawnButton.BorderSizePixel = 3
+SeedSpawnButton.Position = UDim2.new(0.115, 0, 0.570, 0)
+SeedSpawnButton.Size = UDim2.new(0, 320, 0, 40)
+SeedSpawnButton.Font = Enum.Font.GothamBold
+SeedSpawnButton.Text = "Spawn Seed"
+SeedSpawnButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SeedSpawnButton.TextSize = 26.000
+SeedSpawnButton.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
+SeedSpawnButton.TextStrokeTransparency = 0.000
+SeedSpawnButton.TextWrapped = true
+
+local isSeedTabActive = false
+
+-- Toggle Seed Tab
+SeedTabButton.MouseButton1Click:Connect(function()
+    if isSeedTabActive then
+        SeedSpawnerTab.Visible = false
+        isSeedTabActive = false
+    else
+        SeedSpawnerTab.Visible = true
+        isSeedTabActive = true
+    end
+end)
+
+-- Spawn Seed functionality
+SeedSpawnButton.MouseButton1Click:Connect(function()
+    local seedName = SeedName.Text
+
+    if not seedName or seedName == "" then
+        warn("Seed name is required.")
+        return
+    end
+
+    print("Seed spawned:", seedName)
+end)
+
+-- Minimize and Exit logic
+Minimize.MouseButton1Click:Connect(function()
+    main.Visible = not main.Visible
+end)
+
+Exit.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
