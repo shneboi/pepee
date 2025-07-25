@@ -271,3 +271,7 @@ Spawn.MouseButton1Click:Connect(function()
 	end
 end)
 
+Exit.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
