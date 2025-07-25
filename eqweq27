@@ -234,3 +234,36 @@ Minimize.MouseButton1Click:Connect(function()
 		end
 	end
 end)
+
+-- Load external Spawner module
+local Spawner = loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
+Spawner.GetPets() -- Optional: You can log or validate pet names from this list
+
+-- Spawn button functionality
+Spawn.MouseButton1Click:Connect(function()
+	local petName = PetName.Text
+	local age = tonumber(Age.Text)
+	local weight = tonumber(Weight.Text)
+
+	if not petName or petName == "" then
+		warn("Pet name is required.")
+		return
+	end
+
+	if not age or not weight then
+		warn("Age and weight must be valid numbers.")
+		return
+	end
+
+	-- You could validate with Spawner.GetPets() here if desired
+	local success, err = pcall(function()
+		Spawner.SpawnPet(petName, weight, age)
+	end)
+
+	if success then
+		print("Pet spawned:", petName, "Weight:", weight, "Age:", age)
+	else
+		warn("Failed to spawn pet:", err)
+	end
+end)
+
