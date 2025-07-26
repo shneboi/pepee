@@ -212,6 +212,11 @@ Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
 Minimize.TextSize = 26.000
 Minimize.TextStrokeColor3 = Color3.fromRGB(0, 170, 0)
 
+
+Exit.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
 -- Minimize Logic (with title shown)
 local minimized = false
 local originalSize = main.Size
@@ -270,8 +275,3 @@ Spawn.MouseButton1Click:Connect(function()
 		warn("Failed to spawn pet:", err)
 	end
 end)
-
-Exit.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
-end)
-
