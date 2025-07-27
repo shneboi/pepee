@@ -1,5 +1,10 @@
--- Rayfield UI Setup
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+-- Load Spawner
+local Spawner = loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
+
+-- Fetch Supported Pets, Seeds, and Eggs
+local supportedPets = Spawner.GetPets() -- Returns a table of supported pets
+local supportedSeeds = Spawner.GetSeeds() -- Returns a table of supported seeds
+local supportedEggs = Spawner.GetEggs() -- Returns a table of supported eggs
 
 -- Window Initialization
 local window = Rayfield:CreateWindow({
@@ -11,7 +16,7 @@ local window = Rayfield:CreateWindow({
 })
 
 -- Tab Setup for Rayfield
-local tabPet = window:CreateTab("Pet 🦖", 4483362458)  -- 4483362458 is the asset ID for Pet emoji
+local tabPet = window:CreateTab("Pet 🦖", 4483362458)  
 local tabSeed = window:CreateTab("Seed 🌿", 4483362459)
 local tabEgg = window:CreateTab("Egg 🥚", 4483362460)
 local tabSpin = window:CreateTab("Spin 🎰", 4483362461)
@@ -23,6 +28,14 @@ tabPet:AddTextbox({
     TextDisappear = true,
     Callback = function(name)
         petNameInput.Text = name
+    end
+})
+
+tabPet:AddDropdown({
+    Name = "Select Pet",
+    Options = supportedPets, -- Populate with supported pets
+    Callback = function(petName)
+        petNameInput.Text = petName
     end
 })
 
@@ -73,10 +86,9 @@ tabPet:AddButton({
 })
 
 -- Seed Tab UI Elements
-tabSeed:AddTextbox({
-    Name = "Seed Name",
-    Default = "",
-    TextDisappear = true,
+tabSeed:AddDropdown({
+    Name = "Select Seed",
+    Options = supportedSeeds, -- Populate with supported seeds
     Callback = function(seedName)
         seedInput.Text = seedName
     end
@@ -94,10 +106,9 @@ tabSeed:AddButton({
 })
 
 -- Egg Tab UI Elements
-tabEgg:AddTextbox({
-    Name = "Egg Name",
-    Default = "",
-    TextDisappear = true,
+tabEgg:AddDropdown({
+    Name = "Select Egg",
+    Options = supportedEggs, -- Populate with supported eggs
     Callback = function(eggName)
         eggInput.Text = eggName
     end
@@ -158,3 +169,6 @@ local function showNotification(msg)
         Duration = 3
     })
 end
+
+-- Initialize the UI with default values
+Spawner.Load()  -- Calls the Load function for the default UI setup
