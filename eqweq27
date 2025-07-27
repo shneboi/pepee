@@ -1,0 +1,169 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- Load Spawner
+local success, Spawner = pcall(function()
+    return loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.plua"))()
+end)
+
+if not success or not Spawner then
+    warn("❌ Failed to load Spawner module.")
+    return
+end
+
+-- Rayfield Window
+local Window = Rayfield:CreateWindow({
+    Name = "Rin Scripts v4 ⚡",
+    LoadingTitle = "Loading Rin Scripts",
+    LoadingSubtitle = "by Markgil",
+    ConfigurationSaving = {
+        Enabled = false
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = false
+})
+
+-- PET TAB
+local PetTab = Window:CreateTab("🦖 Pet", Color3.fromRGB(0,170,255))
+
+local petName = ""
+local mutation = ""
+local age = 0
+local weight = 0
+
+PetTab:CreateInput({
+    Name = "Pet Name",
+    PlaceholderText = "Enter pet name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(input)
+        petName = input
+    end
+})
+
+PetTab:CreateInput({
+    Name = "Mutation",
+    PlaceholderText = "Optional mutation",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(input)
+        mutation = input
+    end
+})
+
+PetTab:CreateInput({
+    Name = "Age",
+    PlaceholderText = "Enter age (number)",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(input)
+        age = tonumber(input) or 0
+    end
+})
+
+PetTab:CreateInput({
+    Name = "Weight",
+    PlaceholderText = "Enter weight in KG",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(input)
+        weight = tonumber(input) or 0
+    end
+})
+
+PetTab:CreateButton({
+    Name = "⚡ Spawn Pet",
+    Callback = function()
+        if petName ~= "" and age > 0 and weight > 0 then
+            local fullName = mutation ~= "" and (mutation .. " " .. petName) or petName
+            Spawner.SpawnPet(fullName, weight, age, mutation)
+        else
+            Rayfield:Notify({
+                Title = "Invalid Input",
+                Content = "Please enter a valid Pet Name, Age, and Weight.",
+                Duration = 5
+            })
+        end
+    end
+})
+
+-- SEED TAB
+local SeedTab = Window:CreateTab("🌿 Seed", Color3.fromRGB(0,255,0))
+
+SeedTab:CreateInput({
+    Name = "Seed Name",
+    PlaceholderText = "Enter seed name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(seed)
+        SeedTab:Set("SeedName", seed)
+    end
+})
+
+SeedTab:CreateButton({
+    Name = "🌱 Spawn Seed",
+    Callback = function()
+        local seed = SeedTab:Get("SeedName")
+        if seed and seed ~= "" then
+            Spawner.SpawnSeed(seed)
+        else
+            Rayfield:Notify({
+                Title = "Missing Input",
+                Content = "Please enter a Seed Name.",
+                Duration = 5
+            })
+        end
+    end
+})
+
+-- EGG TAB
+local EggTab = Window:CreateTab("🥚 Egg", Color3.fromRGB(255,255,80))
+
+EggTab:CreateInput({
+    Name = "Egg Name",
+    PlaceholderText = "Enter egg name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(egg)
+        EggTab:Set("EggName", egg)
+    end
+})
+
+EggTab:CreateButton({
+    Name = "🥚 Spawn Egg",
+    Callback = function()
+        local egg = EggTab:Get("EggName")
+        if egg and egg ~= "" then
+            Spawner.SpawnEgg(egg)
+        else
+            Rayfield:Notify({
+                Title = "Missing Input",
+                Content = "Please enter an Egg Name.",
+                Duration = 5
+            })
+        end
+    end
+})
+
+-- SPIN TAB
+local SpinTab = Window:CreateTab("🎰 Spin", Color3.fromRGB(255, 100, 255))
+
+SpinTab:CreateInput({
+    Name = "Spin Name",
+    PlaceholderText = "Enter spin name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(spin)
+        SpinTab:Set("SpinName", spin)
+    end
+})
+
+SpinTab:CreateButton({
+    Name = "🎰 Spin",
+    Callback = function()
+        local spin = SpinTab:Get("SpinName")
+        if spin and spin ~= "" then
+            Spawner.Spin(spin)
+        else
+            Rayfield:Notify({
+                Title = "Missing Input",
+                Content = "Please enter a Spin Name.",
+                Duration = 5
+            })
+        end
+    end
+})
