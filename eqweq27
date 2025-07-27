@@ -1,0 +1,160 @@
+-- Rayfield UI Setup
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- Window Initialization
+local window = Rayfield:CreateWindow({
+    Name = "Rin Scripts v4 ⚡", 
+    LoadingTitle = "Loading...",
+    LoadingSubtitle = "Please wait",
+    BackgroundColor = Color3.fromRGB(15, 15, 25),
+    Size = UDim2.new(0, 500, 0, 400)
+})
+
+-- Tab Setup for Rayfield
+local tabPet = window:CreateTab("Pet 🦖", 4483362458)  -- 4483362458 is the asset ID for Pet emoji
+local tabSeed = window:CreateTab("Seed 🌿", 4483362459)
+local tabEgg = window:CreateTab("Egg 🥚", 4483362460)
+local tabSpin = window:CreateTab("Spin 🎰", 4483362461)
+
+-- Pet Tab UI Elements
+tabPet:AddTextbox({
+    Name = "Pet Name",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(name)
+        petNameInput.Text = name
+    end
+})
+
+tabPet:AddTextbox({
+    Name = "Mutation",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(mutation)
+        mutationInput.Text = mutation
+    end
+})
+
+tabPet:AddTextbox({
+    Name = "Age",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(age)
+        ageInput.Text = age
+    end
+})
+
+tabPet:AddTextbox({
+    Name = "Weight (KG)",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(weight)
+        weightInput.Text = weight
+    end
+})
+
+tabPet:AddButton({
+    Name = "⚡ Spawn Pet",
+    Callback = function()
+        local name = petNameInput.Text
+        local mutation = mutationInput.Text
+        local age = tonumber(ageInput.Text)
+        local weight = tonumber(weightInput.Text)
+
+        if name ~= "" and age and weight then
+            if mutation ~= "" then
+                name = mutation .. " " .. name
+            end
+            Spawner.SpawnPet(name, weight, age, mutation)
+        else
+            showNotification("Please fill all fields with valid data.")
+        end
+    end
+})
+
+-- Seed Tab UI Elements
+tabSeed:AddTextbox({
+    Name = "Seed Name",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(seedName)
+        seedInput.Text = seedName
+    end
+})
+
+tabSeed:AddButton({
+    Name = "Spawn Seed",
+    Callback = function()
+        if seedInput.Text ~= "" then
+            Spawner.SpawnSeed(seedInput.Text)
+        else
+            showNotification("Please enter a valid Seed Name.")
+        end
+    end
+})
+
+-- Egg Tab UI Elements
+tabEgg:AddTextbox({
+    Name = "Egg Name",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(eggName)
+        eggInput.Text = eggName
+    end
+})
+
+tabEgg:AddButton({
+    Name = "Spawn Egg",
+    Callback = function()
+        if eggInput.Text ~= "" then
+            Spawner.SpawnEgg(eggInput.Text)
+        else
+            showNotification("Please enter a valid Egg Name.")
+        end
+    end
+})
+
+-- Spin Tab UI Elements
+tabSpin:AddTextbox({
+    Name = "Spin Name",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(spinName)
+        spinInput.Text = spinName
+    end
+})
+
+tabSpin:AddButton({
+    Name = "Spin",
+    Callback = function()
+        if spinInput.Text ~= "" then
+            Spawner.Spin(spinInput.Text)
+        else
+            showNotification("Please enter a valid Spin Name.")
+        end
+    end
+})
+
+-- Minimize and Close Buttons
+window:CreateButton({
+    Name = "Minimize",
+    Callback = function()
+        window:Minimize()
+    end
+})
+
+window:CreateButton({
+    Name = "Close",
+    Callback = function()
+        window:Destroy()
+    end
+})
+
+-- Helper to show Notifications
+local function showNotification(msg)
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Spawner",
+        Text = msg,
+        Duration = 3
+    })
+end
