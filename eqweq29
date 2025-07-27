@@ -1,0 +1,132 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- Load Spawner
+local success, Spawner = pcall(function()
+    return loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.plua"))()
+end)
+
+if not success or not Spawner then
+    warn("❌ Failed to load Spawner module.")
+    return
+end
+
+-- Window
+local Window = Rayfield:CreateWindow({
+    Name = "⚡ Rin Scripts v4 - Pet Spawner",
+    LoadingTitle = "Loading Storm UI...",
+    LoadingSubtitle = "by Markgil",
+    ConfigurationSaving = {
+        Enabled = false
+    },
+    Discord = { Enabled = false },
+    KeySystem = false
+})
+
+-- Pet Tab
+local PetTab = Window:CreateTab("🦖 Pet", 4483362458)
+
+local PetNameBox = PetTab:CreateInput({
+    Name = "Pet Name",
+    PlaceholderText = "Enter pet name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+local MutationBox = PetTab:CreateInput({
+    Name = "Mutation",
+    PlaceholderText = "Mutation type (optional)",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+local AgeBox = PetTab:CreateInput({
+    Name = "Age",
+    PlaceholderText = "Age (number)",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+local WeightBox = PetTab:CreateInput({
+    Name = "Weight (KG)",
+    PlaceholderText = "Weight (number)",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+PetTab:CreateButton({
+    Name = "⚡ Spawn Pet",
+    Callback = function()
+        local rawName = PetNameBox:Get()
+        local mutation = MutationBox:Get()
+        local age = tonumber(AgeBox:Get())
+        local weight = tonumber(WeightBox:Get())
+
+        local name = (mutation ~= "" and mutation .. " " or "") .. rawName
+
+        if rawName ~= "" and age and weight then
+            Spawner.SpawnPet(name, weight, age, mutation)
+        else
+            warn("Please fill all pet fields correctly.")
+        end
+    end
+})
+
+-- Seed Tab
+local SeedTab = Window:CreateTab("🌿 Seed", 4483362458)
+
+local SeedInput = SeedTab:CreateInput({
+    Name = "Seed Name",
+    PlaceholderText = "Enter seed name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+SeedTab:CreateButton({
+    Name = "🌱 Spawn Seed",
+    Callback = function()
+        local seed = SeedInput:Get()
+        if seed ~= "" then
+            Spawner.SpawnSeed(seed)
+        end
+    end
+})
+
+-- Egg Tab
+local EggTab = Window:CreateTab("🥚 Egg", 4483362458)
+
+local EggInput = EggTab:CreateInput({
+    Name = "Egg Name",
+    PlaceholderText = "Enter egg name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+EggTab:CreateButton({
+    Name = "🐣 Spawn Egg",
+    Callback = function()
+        local egg = EggInput:Get()
+        if egg ~= "" then
+            Spawner.SpawnEgg(egg)
+        end
+    end
+})
+
+-- Spin Tab
+local SpinTab = Window:CreateTab("🎰 Spin", 4483362458)
+
+local SpinInput = SpinTab:CreateInput({
+    Name = "Spin Name",
+    PlaceholderText = "Enter spin name",
+    RemoveTextAfterFocusLost = false,
+    Callback = function() end
+})
+
+SpinTab:CreateButton({
+    Name = "🎲 Spin",
+    Callback = function()
+        local spin = SpinInput:Get()
+        if spin ~= "" then
+            Spawner.Spin(spin)
+        end
+    end
+})
