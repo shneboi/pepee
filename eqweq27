@@ -10,62 +10,62 @@ if not success or not Spawner then
     return
 end
 
--- Rayfield Window
+-- Create Window
 local Window = Rayfield:CreateWindow({
     Name = "Rin Scripts v4 ⚡",
-    LoadingTitle = "Loading Rin Scripts",
-    LoadingSubtitle = "by Markgil",
+    LoadingTitle = "Rin Scripts",
+    LoadingSubtitle = "Powered by Rayfield",
     ConfigurationSaving = {
-        Enabled = false
+        Enabled = false,
     },
     Discord = {
-        Enabled = false
+        Enabled = false,
     },
     KeySystem = false
 })
 
--- PET TAB
-local PetTab = Window:CreateTab("🦖 Pet", Color3.fromRGB(0,170,255))
+--------------------------------------------------
+-- 🦖 PET TAB
+--------------------------------------------------
 
-local petName = ""
-local mutation = ""
-local age = 0
-local weight = 0
+local petName, mutation, age, weight = "", "", 0, 0
+
+local PetTab = Window:CreateTab("🦖 Pet", Color3.fromRGB(0,170,255))
 
 PetTab:CreateInput({
     Name = "Pet Name",
     PlaceholderText = "Enter pet name",
     RemoveTextAfterFocusLost = false,
-    Callback = function(input)
-        petName = input
-    end
+    Callback = function(text)
+        petName = text
+    end,
 })
 
 PetTab:CreateInput({
     Name = "Mutation",
     PlaceholderText = "Optional mutation",
     RemoveTextAfterFocusLost = false,
-    Callback = function(input)
-        mutation = input
-    end
+    Callback = function(text)
+        mutation = text
+    end,
 })
 
 PetTab:CreateInput({
     Name = "Age",
     PlaceholderText = "Enter age (number)",
     RemoveTextAfterFocusLost = false,
-    Callback = function(input)
-        age = tonumber(input) or 0
-    end
+    Callback = function(text)
+        age = tonumber(text) or 0
+    end,
 })
 
 PetTab:CreateInput({
-    Name = "Weight",
+    Name = "Weight (KG)",
     PlaceholderText = "Enter weight in KG",
     RemoveTextAfterFocusLost = false,
-    Callback = function(input)
-        weight = tonumber(input) or 0
-    end
+    Callback = function(text)
+        weight = tonumber(text) or 0
+    end,
 })
 
 PetTab:CreateButton({
@@ -76,94 +76,103 @@ PetTab:CreateButton({
             Spawner.SpawnPet(fullName, weight, age, mutation)
         else
             Rayfield:Notify({
-                Title = "Invalid Input",
-                Content = "Please enter a valid Pet Name, Age, and Weight.",
-                Duration = 5
+                Title = "Missing or Invalid Input",
+                Content = "Please enter a name, age, and weight correctly.",
+                Duration = 5,
             })
         end
-    end
+    end,
 })
 
--- SEED TAB
+--------------------------------------------------
+-- 🌿 SEED TAB
+--------------------------------------------------
+
+local seedName = ""
 local SeedTab = Window:CreateTab("🌿 Seed", Color3.fromRGB(0,255,0))
 
 SeedTab:CreateInput({
     Name = "Seed Name",
     PlaceholderText = "Enter seed name",
     RemoveTextAfterFocusLost = false,
-    Callback = function(seed)
-        SeedTab:Set("SeedName", seed)
-    end
+    Callback = function(text)
+        seedName = text
+    end,
 })
 
 SeedTab:CreateButton({
     Name = "🌱 Spawn Seed",
     Callback = function()
-        local seed = SeedTab:Get("SeedName")
-        if seed and seed ~= "" then
-            Spawner.SpawnSeed(seed)
+        if seedName ~= "" then
+            Spawner.SpawnSeed(seedName)
         else
             Rayfield:Notify({
                 Title = "Missing Input",
                 Content = "Please enter a Seed Name.",
-                Duration = 5
+                Duration = 5,
             })
         end
-    end
+    end,
 })
 
--- EGG TAB
+--------------------------------------------------
+-- 🥚 EGG TAB
+--------------------------------------------------
+
+local eggName = ""
 local EggTab = Window:CreateTab("🥚 Egg", Color3.fromRGB(255,255,80))
 
 EggTab:CreateInput({
     Name = "Egg Name",
     PlaceholderText = "Enter egg name",
     RemoveTextAfterFocusLost = false,
-    Callback = function(egg)
-        EggTab:Set("EggName", egg)
-    end
+    Callback = function(text)
+        eggName = text
+    end,
 })
 
 EggTab:CreateButton({
     Name = "🥚 Spawn Egg",
     Callback = function()
-        local egg = EggTab:Get("EggName")
-        if egg and egg ~= "" then
-            Spawner.SpawnEgg(egg)
+        if eggName ~= "" then
+            Spawner.SpawnEgg(eggName)
         else
             Rayfield:Notify({
                 Title = "Missing Input",
                 Content = "Please enter an Egg Name.",
-                Duration = 5
+                Duration = 5,
             })
         end
-    end
+    end,
 })
 
--- SPIN TAB
-local SpinTab = Window:CreateTab("🎰 Spin", Color3.fromRGB(255, 100, 255))
+--------------------------------------------------
+-- 🎰 SPIN TAB
+--------------------------------------------------
+
+local spinName = ""
+local SpinTab = Window:CreateTab("🎰 Spin", Color3.fromRGB(255,100,255))
 
 SpinTab:CreateInput({
     Name = "Spin Name",
     PlaceholderText = "Enter spin name",
     RemoveTextAfterFocusLost = false,
-    Callback = function(spin)
-        SpinTab:Set("SpinName", spin)
-    end
+    Callback = function(text)
+        spinName = text
+    end,
 })
 
 SpinTab:CreateButton({
     Name = "🎰 Spin",
     Callback = function()
-        local spin = SpinTab:Get("SpinName")
-        if spin and spin ~= "" then
-            Spawner.Spin(spin)
+        if spinName ~= "" then
+            Spawner.Spin(spinName)
         else
             Rayfield:Notify({
                 Title = "Missing Input",
                 Content = "Please enter a Spin Name.",
-                Duration = 5
+                Duration = 5,
             })
         end
-    end
+    end,
 })
