@@ -217,31 +217,6 @@ Exit.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
 
--- Minimize Logic (with title shown)
-local minimized = false
-local originalSize = main.Size
-local originalBgColor = main.BackgroundColor3 -- Save the original background color
-
-Minimize.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    if minimized then
-        main.Size = UDim2.new(0, 196, 0, 46)
-        main.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Set to white when minimized
-        for _, child in ipairs(main:GetChildren()) do
-            if child:IsA("GuiObject") and child.Name ~= "TextLabel" then
-                child.Visible = false
-            else
-                child.Visible = true
-            end
-        end
-    else
-        main.Size = originalSize
-        main.BackgroundColor3 = originalBgColor -- Restore original background color when unminimized
-        for _, child in ipairs(main:GetChildren()) do
-            child.Visible = true
-        end
-    end
-end)
 
 -- Load external Spawner module
 local Spawner = loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
